@@ -1,0 +1,28 @@
+<%= link_to 'Create New Campaign', new_campaign_path ,class: "button success" %>
+
+
+<br /><br /><br /><br />
+<h1>Listing Your Campaigns</h1>
+
+
+
+<table>
+  <tr>
+    <th>Campaign Name</th>
+    <th>Status</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @campaigns.each do |campaign| %>
+  <tr>
+    <td><%= link_to "#{campaign.client_name} : #{campaign.name}", campaign ,class: "button success" %></td>
+    <td><h3>&nbsp;<%= campaign.status %></h3></td>
+    <td><%#= campaign.updated_at%></td>
+    <td><%#= link_to 'Edit', edit_campaign_path(campaign) %><%#= link_to "Send To QA", edit_campaign_path(campaign) , class: "button success" %></td>
+    <td><%#= link_to 'Destroy', campaign, method: :delete, data: { confirm: 'Are you sure?' } , class: "button alert"%></td>
+    <td><%= button_tag 'Destroy' , class: "button alert delete" , :id => "del-#{campaign.id}"  %><%= link_to 'Are You Sure?', campaign, method: :delete, class: "button danger hidden" , :id => "delete-#{campaign.id}" %></td>
+  </tr>
+<% end %>
+</table>

@@ -1,0 +1,40 @@
+<%= form_for(@recipient_list) do |f| %>
+  <% if @recipient_list.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@recipient_list.errors.count, "error") %> prohibited this recipient_list from being saved:</h2>
+
+      <ul>
+      <% @recipient_list.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :list %><br />
+    <%= f.text_area :list %>
+  </div>
+  
+  <%unless @recipient_list.all_users%>
+    <div class="field">
+      <%= f.label :preferred? %> <i>(Override default list in Test mode)</i><br />
+      <%= f.check_box :preferred %>
+    </div>
+  <%end%>
+
+  <% if current_user.is_admin %>
+    <div class="field">
+      <%= f.label :all_users %> <i>(Make list available to all users)</i><br />
+      <%= f.check_box :all_users %>
+    </div>
+  <%end%>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

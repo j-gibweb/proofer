@@ -1,0 +1,26 @@
+<h1>User</h1>
+<br>
+
+<p>
+  <b>User Email:</b>
+  <%= @user.email %>
+</p>
+<p>
+  <b>User Name:</b>
+  <%= @user.name %>
+</p>
+
+
+<p>
+  <b>Admin Status:</b>
+  <%= @user.is_admin %>
+</p>
+
+<p>
+  <b>Confirmed User Status:</b>
+  <%= @user.confirmed_user %>
+</p>
+
+<br><br>
+
+<%= link_to "Return to Users" , users_path , class: "button success" %>

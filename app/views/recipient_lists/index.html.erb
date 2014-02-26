@@ -1,0 +1,35 @@
+<%= link_to 'New Recipient list', new_recipient_list_path , class: "button success" %>
+<br><br><br>
+
+<h1>Recipient Lists</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @recipient_lists.each do |recipient_list| %>
+  <tr>
+    <td><%= recipient_list.name %></td>
+    <td><%#= recipient_list.list.truncate(20) %></td>
+    <td><%#= link_to 'Show', recipient_list %></td>
+    <td><%= link_to "Edit", edit_recipient_list_path(recipient_list) , class: "button success"  if current_user.is_admin || recipient_list.all_users == false %></td>
+      <%#= link_to 'Destroy', recipient_list, method: :delete, data: { confirm: 'Are you sure?' } if current_user.is_admin %>  
+    <td>
+      <%= button_tag 'Destroy' , class: "button alert delete" , :id => "del-#{recipient_list.id}" if current_user.is_admin %>
+      <%= link_to 'Are You Sure?', recipient_list, method: :delete, class: "button danger hidden" , :id => "delete-#{recipient_list.id}" if current_user.is_admin %>
+    </td>
+
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+
+
+<br><br>

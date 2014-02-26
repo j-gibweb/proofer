@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @recipient_list.name %>
+</p>
+
+<p>
+  <b>List:</b>
+  <%= @recipient_list.list %>
+</p>
+
+<p>
+  <b>Preferred:</b>
+  <%= @recipient_list.preferred %>
+</p>
+
+<!-- 
+<p>
+  <b>Belongs to:</b>
+  <%= @recipient_list.users.count %> users
+</p>
+ -->
+
+<%= link_to 'Edit', edit_recipient_list_path(@recipient_list) %> |
+<%= link_to 'Back', recipient_lists_path %>

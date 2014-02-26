@@ -1,0 +1,185 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require foundation_and_overrides
+ *= require_tree .
+ */
+html { 
+	/*background: url(http://www.colectiva.tv/wordpress/wp-content/uploads/2009/08/mark-portillo-2245689397_294c00ca25_o.gif) no-repeat center center fixed; */
+	/*background: url(http://thetango.net/wp-content/uploads/2013/07/funny-animated-gifs-american-idol-has-gone-downhill-497e4b86-original.gif) no-repeat center center fixed; */
+	/*background: url(http://elitedaily.com/wp-content/uploads/2013/04/anigif_enhanced-buzz-5547-1364242100-11.gif) no-repeat center center fixed; */
+	/*background: url(email.gif) no-repeat center center fixed; */
+	/*background: url(http://www.freakingnews.com/pictures/82000/Two-Faced-Nicolas-Cage-and-Jim-Carrey-82368.jpg) no-repeat center center fixed; */
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.hidden{
+	display:none;
+}
+
+.form-bg {
+	width:auto;
+	background-color:#999999;
+	padding:20px 0px 20px 10px;
+}
+
+
+
+
+header nav ul {
+list-style: none;
+margin: 0 0 2em;
+padding: 0;
+}
+header nav ul li {
+display: inline;
+}
+
+#flash_notice, #flash_alert {
+padding: 5px 8px;
+margin: 10px 0;
+}
+#flash_notice {
+background-color: #CFC;
+border: solid 1px #6C6;
+}
+#flash_alert {
+background-color: #FCC;
+border: solid 1px #C66;
+}
+
+
+
+
+
+/*TOP NAV BAR STUFF*/
+.top-bar{
+  background:white;
+  padding:10px 0px 10px 0px; 
+  border-bottom:3px  solid;
+  min-width: 1400px;
+}
+
+.divider{
+  width:1px;
+  padding:0px 1px 0px 1px;
+  margin-right:4px;
+  background:black;
+}
+
+.top-bar ul {
+  display:inline;
+  margin-top:10px;
+}
+
+.top-bar ul li {
+  display:inline;
+  
+}
+
+.top-bar ul li h1 {
+  display:inline;
+}
+
+.top-bar ul li a {
+	padding:10px 15px 10px 15px;
+	color: black;
+	text-decoration: none;
+	-o-transition:.5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	transition:.5s;
+}
+
+.top-bar ul li a:hover {
+	background: #333333;
+	color:#ffffff;
+	-o-transition:.5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	transition:.5s;
+}
+/*TOP NAV BAR STUFF*/
+
+
+
+
+/*BUTTON STUFF*/
+.button{
+	float:left;
+	padding:10px 10px 10px 10px;
+	margin-right:10px;
+	background: #444444;
+	color:#ffffff;
+	font-size:13px;
+	text-decoration: none;
+	border: 1px #333333 solid;
+	-o-transition:.5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	transition:.5s;
+}
+
+.success:hover{
+	background: #339966;
+	-o-transition:.5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	transition:.5s;
+}
+
+.alert:hover{
+	background: #FFCC00;
+	-o-transition:.5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	transition:.5s;
+}
+
+.danger{
+	background: #ee4705;
+	float:left;
+	/*padding:20px 20px 20px 20px;*/
+	-o-transition:1.5s;
+	-ms-transition:1.5s;
+	-moz-transition:1.5s;
+	-webkit-transition:1.5s;
+	transition:1.5s;
+}
+
+
+.botton a {
+	margin:20px 10px 10px 10px;
+}
+
+/*BUTTON STUFF*/
+
+
+
+
+
+
+
+
+.css_reset{
+/* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
+/*html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}*/
+}
+
+

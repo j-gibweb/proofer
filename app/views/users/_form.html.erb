@@ -1,0 +1,48 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%if @user.email == ""%>
+      <%= f.text_field :email ,  value: "@responsys.com" %>
+    <%else%>
+      <%= f.text_field :email ,  value: "#{@user.email}" %>
+    <%end%>
+  </div>
+  <% if @user.encrypted_password == "" %><%#= @user.encrypted_password%>
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.text_field :password , value: "html1234"%> - default password
+  </div>
+  <%end%>
+  
+  <div class="field">
+    <%= f.label :is_admin %><br />
+    <%= f.check_box :is_admin %>
+  </div>
+
+  <div class="field">
+    <%= f.label :confirmed_user %> || <em>Users are on probationary status until confirmed</em><br />
+    <%= f.check_box :confirmed_user , {checked: @user.confirmed_user } %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit class: "button success" %>
+  </div>
+<% end %>

@@ -1,0 +1,40 @@
+
+<% if user_signed_in? %>
+
+<li>
+	<div id="user-name" style="color:black; margin:10px 0px 0px 10px; display:inline">Hey there, <%= current_user.name%> </div>
+</li>
+
+<li>
+
+<%= link_to('Logout', destroy_user_session_path, :method=>'delete' ,class: "alert")%>
+
+</li>
+
+<% else %>
+
+<li>
+
+<%#= link_to('Login', new_user_session_path)  %>
+
+</li>
+
+<% end %>
+
+<% if user_signed_in? %>
+
+<li>
+
+<%= link_to('Edit account', edit_user_registration_path) %>
+
+</li>
+
+<% else %>
+
+<li>
+
+<%#= link_to('Sign up', new_user_registration_path)  %>
+
+</li>
+
+<% end %>

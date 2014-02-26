@@ -1,0 +1,46 @@
+
+<div style="width:500px;">
+  <em>
+    Email tests with images present must have images inside a relative directory called "images"... 
+    <br><br>Additionally, any .css or .js files must be in same directory as the .html file if you wish for them 
+    to be hosted on S3 with the .html and images.
+  </em>
+</div>
+
+<br><br>
+<p>
+  <b>Campaign Name:</b>
+  <%= @campaign.name %>
+</p>
+
+<p>
+  <b>Completion Status:</b>
+  <%= @campaign.status %>
+</p>
+
+<p>
+  <b>Email Tests Sent:</b>  
+   -> <%= @campaign.emails.where("status = ?" , "Testing").count %>
+  <br />
+</p>
+
+<p>
+  <b>QA Tests Sent:</b>  
+   -> <%= @campaign.emails.where("status = ?" , "QA").count %>
+  <br /><br />
+</p>
+
+
+  <%= link_to "New Test Email" , new_email_path(:campaign => @campaign , :status => "Testing") , class: "button success" %> 
+
+
+  <%= link_to "New QA Email" , new_email_path(:campaign => @campaign , :status => "QA") , class: "button success" %> 
+
+
+  <%unless @campaign.emails.empty?%>
+    <%= link_to "View Most Recent Test" , @campaign.emails.last , class: "button success" %>
+  <%end%>
+
+  <%= link_to 'Back', campaigns_path , class: "button alert" %>
+
+

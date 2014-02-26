@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9" lang="en"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+  <head>
+  	<meta charset="utf-8" />
+
+  	<!-- Uncomment to make IE8 render like IE7 -->
+  	<!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
+
+  	<!-- Set the viewport width to device width for mobile -->
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  	<title>ProoferV2</title>
+
+  	<%= stylesheet_link_tag    "application" %>
+  	<%= javascript_include_tag "vendor/custom.modernizr" %>
+    <%= javascript_include_tag 'jquery', 'application' %>
+
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+
+  	<nav class="top-bar">
+  	  <ul class="title-area">
+  	    <li>
+  	      <h1><%= link_to "Proofer V2", root_path  , :id=>"app-name" %></a></h1>
+  	    </li>
+  	  </ul>
+  	  <section class="top-bar-section" style="display:inline;">
+  	    <ul class="right">
+  	      <li class="divider"></li>
+  	      <li><h1><%= link_to "Campaigns", campaigns_path %></h1></li>
+  	      <li class="divider"></li>
+  	      <li><h1> <%#= link_to "All Emails", emails_path %></h1></li>
+  	      <!-- <li class="divider"></li> -->
+          <li><h1><%= link_to("Recipient Lists", recipient_lists_path)%></h1></li>
+          <li class="divider"></li>
+          <li><h1><%= link_to "Social Icon Generator" , "http://code.rsyssvcs.com/ltrisolini/socialgenerator/validate.php" , target: "_blank" %></h1></li>
+          <li class="divider"></li>
+          
+          <%if current_user && current_user.is_admin %>
+          <li><h1><%= link_to("Users", users_path)%></h1></li>
+          <li class="divider"></li>
+          <%end%>
+
+          <li><h1><%= render "shared/navigation" %></h1></li>
+          <li class="divider"></li>
+  	    </ul>
+  	  </section>
+  	</nav>
+
+    <br />
+
+    <% if current_user  && current_user.confirmed_user == false %>
+    
+    <div style="margin:20px 0px 20px 50px;">
+      <strong>Approved User Status:</strong> <%= current_user.confirmed_user %> <br><br>
+      <em>Your account is currently being reviewed for approval...</em>
+    </div>
+
+    <%else%>
+
+    
+
+<!-- <div class="row" > -->
+<div style="background:#fff;">
+  <% flash.each do |key, value| %>
+         <div style=" margin:0px 0px 0px 100px;" class="<%= flash_class(key) %>">
+               <%= value %>
+         </div>
+   <% end %>
+
+  <div id="container" style="background:#fff; padding:50px 0px 60px 100px;">
+    
+     <%= yield %>
+
+   </div>
+</div>
+
+  
+<!--   <div class="small-4 columns">
+    <h2 class="subheader">Proofer Two</h2>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </div> -->
+<!-- </div> -->
+
+
+  <%end%>
+
+  <%= javascript_include_tag "application" %>
+  </body>
+  
+
+
+</html>
