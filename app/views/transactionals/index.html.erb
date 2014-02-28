@@ -1,0 +1,27 @@
+<h1>Listing transactionals</h1>
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Xml</th>
+    <th>Shell</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @transactionals.each do |transactional| %>
+  <tr>
+    <td><%= transactional.id %></td>
+    <td><%= transactional.xml %></td>
+    <td><%= transactional.shell %></td>
+    <td><%= link_to 'Show', transactional %></td>
+    <td><%= link_to 'Edit', edit_transactional_path(transactional) %></td>
+    <td><%= link_to 'Destroy', transactional, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Transactional', new_transactional_path %>

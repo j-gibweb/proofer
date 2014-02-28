@@ -1,0 +1,27 @@
+<%= form_for(@promotional) do |f| %>
+  <% if @promotional.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@promotional.errors.count, "error") %> prohibited this promotional from being saved:</h2>
+
+      <ul>
+      <% @promotional.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field hidden">
+    <strong><%= f.label :html %></strong> - optional<br />
+    <%= f.text_area :html %>
+  </div>
+  <br>
+   <div class="field">
+    <strong>.zip containing promotional email .html and all assets</strong><br />
+    <%= f.file_field :folder %>
+  </div>
+  <br><br>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

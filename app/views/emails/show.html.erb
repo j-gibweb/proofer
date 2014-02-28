@@ -1,4 +1,3 @@
-
 <p>
   <b>Subject:</b>
   <%= @email.subject %>
@@ -15,37 +14,29 @@
 
 <p>
   <b>Send Status:</b>
-  <%= @email.status %>
+  <%#= @email.status %>
 </p>
 <p>
   <b>hosted HTML:</b> <br><br>
   
-  <%= link_to "https://s3.amazonaws.com/proofer/#{@email.campaign_name}/#{@email.html_file_name}" , "https://s3.amazonaws.com/proofer/#{@email.campaign_name}/#{@email.html_file_name}" , class: "button success" , :target => "_blank" %> 
+  <%= link_to "https://s3.amazonaws.com/proofer/#{@email.campaign_name}/#{@email.html_file_name}" , 
+              "https://s3.amazonaws.com/proofer/#{@email.campaign_name}/#{@email.html_file_name}" , 
+              class: "button success" , 
+              :target => "_blank" %> 
 
 </p>
 <br /><br />
-<%#= link_to 'Edit', edit_email_path(@email) %>
 
 <!-- the path given to this back function is WRONG -->
 <%= link_to 'Back to Campaign', @email.campaigns.first , class: "button success" %>
-<!-- the path given to this back function is WRONG -->
 
-<br />
+<br /><br><br><br>
 
-
-<%#= link_to "Normal" , "" , class: "button success" , :id =>"normal_toggle" , :remote=> false %>
-<%#= link_to "Code" , "" , class: "button success" ,  :remote=> false %>
-<%#= link_to "Responsive" , "" , class: "button success" , :id =>"responsive_toggle" %>
-
-<br /><br /><br />
-
-<br><br><br>
 <div id="email_viewport">
 	<%= raw @email.markup %> 
 	<%#= @email.markup %>
 </div>
 
-<!-- &#x2665; -->
 
 
 

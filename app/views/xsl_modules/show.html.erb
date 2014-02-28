@@ -1,0 +1,45 @@
+<script>
+	// function to show or hide raw code output
+	function showDiv(hidden_div_name, visible_div_name , button_obj) {
+		if ($('.'+hidden_div_name).css('display') == "none"){
+				$(button_obj).html("Hide Code");
+				$('.'+hidden_div_name).toggle(400);
+				$('.'+visible_div_name).toggle(400);
+			}
+		else{
+				$(button_obj).html("Show Code");
+				$('.'+hidden_div_name).toggle(400);
+				$('.'+visible_div_name).toggle(400);
+			}
+	}
+</script>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Parent Transactional:</b><br>
+  <%= link_to "#{@parent_campaign.name} Transactional Shell" , @xsl_module.transactional , class: "button success" %> <br><br><br>
+</p>
+<p>
+  <b>Order in Shell:</b>
+  <%= @xsl_module.order %> <br><br>
+  Is this an xsl doc? <strong><%= @xsl_litmus_test%><br><br></strong>
+</p>
+
+<p>
+	<%= link_to 'Edit Module', edit_xsl_module_path(@xsl_module) , class: "button alert" %> 
+	<%= link_to "Download Module As Html" , {:controller => :xsl_modules , :action => :download_module}  , class: "button success"  %>
+  <%= link_to_function "Show Code" , "showDiv('code' , 'visible' , this)", class: "button success" %> 
+  
+  <br><br>
+</p>
+<br>
+<p>
+  <div class="visible"><%= raw @xsl_module.xslt %></div>
+  <div class="hidden code"><%= @pretty_html.to_html.encode("utf-8", "binary", :undef => :replace) %></div>
+  
+  <br><br><br>
+  <div class="output"></div>
+</p>
+
+

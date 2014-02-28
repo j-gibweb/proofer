@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>NORDSTROM</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta name="viewport" content="width=device-width">
+	<link href="https://responsys.hs.llnwd.net/i5/responsysimages/content/nordstrom/Nordstrom_Master_CSS_20130514.css" rel="stylesheet" type="text/css" />
+    <link href="https://responsys.hs.llnwd.net/i5/responsysimages/nordstrom/contentlibrary/transactional/_transactional_confirmflsshipment_410_test/Transactional_FLS_ShipConfirm_Shell/images/Nordstrom_FLS_ShipConfirm2_20140321.css" rel="stylesheet" type="text/css" />
+
+    
+
+</head>
+<body>
+<!--[if gte mso 9]>
+<style type="text/css">
+.ml9{margin-left:9px;}
+.ml22{margin-left:22px;}
+</style>
+<![endif]-->
+<center>
+<table cellpadding="0" cellspacing="0" width="100%" align="center">
+<tr>
+<td align="center" valign="top">
+
+<!-- Start Preheader -->
+<table cellpadding="0" cellspacing="0" width="598" class="width292">
+<tr>
+    <td width="598" height="57" class="width292" align="center" valign="middle">
+        <div style="font-size:10px; font-family:Verdana, Geneva, sans-serif; color:#787878; line-height:12px;">
+            <a href="$clickthrough(preheader,cmite=preheader)$" style="color:#787878; line-height:12px; text-decoration:none;">$PREHEADER$</a>
+        </div>
+    </td>
+</tr>
+</table>
+<!-- End Preheader -->
+
+<!-- Start Navigation -->
+<table cellpadding="0" cellspacing="0" width="598" class="width292">
+<tr>
+    <td width="598" height="59" class="width292" align="center" valign="middle"><a href="$clickthrough(tlogo,cmite=tlogo)$"><img src="images/logo.gif" width="200" height="59" alt="NORDSTROM" border="0" style="display:block;"/></a></td>
+</tr>
+</table>
+
+<table cellpadding="0" cellspacing="0" width="598" class="width292">
+<tr>
+      <td width="71" height="32" class="alignleft width58" align="center" valign="middle"><div style="font-size: 12px; font-family:Arial, Helvetica, sans-serif; color:#646464; line-height:14px;"><a href="$clickthrough(twomen,cmite=twomen)$" style="color:#646464; line-height:14px; text-decoration:none;">WOMEN</a></div></td>
+    <td width="77" height="32" class="width55" align="center" valign="middle"><div style="font-size: 12px; font-family:Arial, Helvetica, sans-serif; color:#646464; line-height:14px;"><a href="$clickthrough(tmen,cmite=tmen)$" style="color:#646464; line-height:14px; text-decoration:none;">MEN</a></div></td>
+    <td width="78" height="32" class="width74" align="center" valign="middle"><div style="font-size: 12px; font-family:Arial, Helvetica, sans-serif; color:#646464; line-height:14px;"><a href="$clickthrough(tjuniors,cmite=tjuniors)$" style="color:#646464; line-height:14px; text-decoration:none;">JUNIORS</a></div></td>
+    <td width="83" height="32" class="width61" align="center" valign="middle"><div style="font-size: 12px; font-family:Arial, Helvetica, sans-serif; color:#646464; line-height:14px;"><a href="$clickthrough(tkids,cmite=tkids)$" style="color:#646464; line-height:14px; text-decoration:none;">KIDS</a></div></td>
+    <td width="74" height="32" class="hide" align="center" valign="middle"><div style="font-size: 12px; font-family:Arial, Helvetica, sans-serif; color:#646464; line-height:14px;"><a href="$clickthrough(tbrands,cmite=tbrands)$" style="color:#646464; line-height:14px; text-decoration:none;">BRANDS</a></div></td>
+    <td width="84" height="32" class="alignright width46" align="center" valign="middle"><div style="font-size: 12px; font-family:Arial, Helvetica, sans-serif; color:#646464; line-height:14px;"><a href="$clickthrough(tsale,cmite=tsale)$" style="color:#646464; line-height:14px; text-decoration:none;">SALE</a></div></td>
+    <td width="131" height="32" class="hide" align="center" valign="middle"><div style="font-size: 12px; font-family:Arial, Helvetica, sans-serif; color:#646464; line-height:14px;"><a href="$clickthrough(tspecial,cmite=tspecial)$" style="color:#646464; line-height:14px; text-decoration:none;">SPECIALTY SHOPS</a></div></td>
+</tr>
+</table>
+<!-- End Navigation -->
+
+<table cellpadding="0" cellspacing="0" width="598" class="width292">
+<tr><td height="1" bgcolor="#edeaea" style="line-height:1px;"><img src="images/spcr.gif" width="1" height="1" border="0" style="display:block;" /></td></tr>
+<tr><td height="28"></td></tr>
+</table>
+
+<!--Message Section -->
+$document(lookup(currentFolder),Transactional_FLS_ShipConfirm_Message)$
+
+
+<table cellspacing="0" cellpadding="0"><tr><td height="31"></td></tr></table>
+
+$generateContentFromXML(lookup(RetailTransactionLines2),document(lookup(currentFolder),Transactional_FLS_ShipConfirm_ProductDetails_XSL))$
+                     
+<table cellspacing="0" cellpadding="0"><tr><td height="10" style="font-size:10px; line-height:10px;">&nbsp;</td></tr></table>
+
+$document(lookup(currentFolder),Transactional_FLS_ShipConfirm_ShipStoreInfo)$
+
+<table cellspacing="0" cellpadding="0"><tr><td height="25"></td></tr></table>
+
+<!-- Event Section removed from scope -->
+
+
+<!-- Rescue banner -->
+$document(contentlibrary/transactional/banners_prod,lookup(RESCUE_DOC_NAME))$
+      
+<!--Start Social Footer -->
+<table cellpadding="0" cellspacing="0" width="598" class="width292">
+<tr>
+    <td width="190" height="24" class="width37">
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <td width="190" height="1" class="width37" valign="middle" bgcolor="#cccccc" style="line-height:1px;"><img src="images/spcr.gif" width="1" height="1" border="0" style="display:block;" /></td>
+            </tr>
+        </table>
+    </td>
+    <td width="10"></td>
+    <td width="23"><a href="$clickthrough(sfb,cmite=sfb)$"><img src="images/sfb.gif" width="23" height="24" alt="Facebook" border="0" style="display:block;"/></a></td>
+    <td width="8"></td>
+    <td width="23"><a href="$clickthrough(stw,cmite=stw)$"><img src="images/stw.gif" width="23" height="24" alt="Twitter" border="0" style="display:block;"/></a></td>
+    <td width="8"></td>
+    <td width="24"><a href="$clickthrough(spin,cmite=spin)$"><img src="images/spin.gif" width="24" height="24" alt="Pinterest" border="0" style="display:block;"/></a></td>
+    <td width="8"></td>
+    <td width="23"><a href="$clickthrough(sgp,cmite=sgp)$"><img src="images/sgplus.gif" width="22" height="24" alt="Google+" border="0" style="display:block;"/></a></td>
+    <td width="8"></td>
+    <td width="23"><a href="$clickthrough(sig,cmite=sig)$"><img src="images/sig.gif" width="22" height="24" alt="Instagram" border="0" style="display:block;"/></a></td>
+    <td width="8"></td>            
+    <td width="42"><a href="$clickthrough(syt,cmite=syt)$"><img src="images/syt.gif" width="42" height="24" alt="YouTube" border="0" style="display:block;"/></a></td>
+    <td width="10"></td>
+    <td width="190" height="24" class="width37">
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <td width="190" height="1" class="width37" valign="middle" bgcolor="#cccccc" style="line-height:1px;"><img src="images/spcr.gif" width="1" height="1" border="0" style="display:block;" /></td>
+            </tr>
+        </table>
+    </td>
+</tr>	
+</table>
+<table cellspacing="0" cellpadding="0"><tr><td height="14" style="font-size:14px; line-height:14px;">&nbsp;</td></tr></table>
+<!-- End Social Footer -->  
+
+<!-- Start Disclaimer -->
+<table cellpadding="0" cellspacing="0" width="598" class="width292">
+<tr>
+    <td width="598" class="width292" align="left" valign="top">
+        <div style="font-family:Verdana, Geneva, sans-serif; font-size:10px; color:#808080; line-height:12px;">
+            If you are not the intended recipient or have received this email in error, please delete immediately. Any dissemination, distribution, or copying of this message by any person other than the intended recipient is strictly prohibited.<br /><br />
+            <a href="$clickthrough(privacy,cmite=privacy)$" style="color:#808080; line-height:12px; text-decoration:underline;">Nordstrom Privacy Policy</a><br/><br/>
+        </div>
+    
+    </td>
+</tr>
+</table>
+<!-- End Disclaimer -->        
+</td>
+</tr>
+</table>
+
+</center>
+<img src="https://pixel.monitor1.returnpath.net/pixel.gif?r=ac69ba1d5c8420c79b3647d7ef3befc905331b1b" width="1" height="1"/>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,22 @@
+@charset "UTF-8";
+/* CSS Document */
+
+	html { -webkit-text-size-adjust:none; }
+	@media all and (max-width: 640px){ 
+	
+	*[class].fontsmalla { font-size: 14px !important; }		  		  
+	*[class].fontsmallb { font-size: 12px !important; }	
+	*[class].width292 { width: 292px !important; }		  		  
+	*[class].width146 { width: 146px !important; }		  		    		  
+	*[class].width206 { width: 206px !important; }		  		    		  
+	*[class].tdwrap{ display:inline-block !important; }	
+	*[class].hide{ display:none !important; }
+	*[class].showme {
+	display: block !important;
+	width: auto !important;
+	overflow: visible !important;
+	float: none !important;
+	max-height: inherit !important;
+	line-height: inherit !important;}
+	
+}  

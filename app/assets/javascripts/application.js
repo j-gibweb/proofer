@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-// require foundation
 //= require_tree .
 
  // $(function(){ $(document).foundation(); });
@@ -33,24 +32,6 @@ $(document).ready(function() {
 	    $('#'+trig).show();
 	  });
 	});
-
-// DELETE CONFIRMATION ANIMATION
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Untitled Document</title>
+
+
+
+    <!-- REMOVE MEEEEEEEEEEEE FROM THE FILE-->
+	<style>
+    @media all and (max-width: 600px){
+		*[class].paddingl12 {padding-left:12px !important;}
+	}
+    </style>
+    <!-- REMOVE MEEEEEEEEEEEE FROM THE FILE-->
+    
+    
+</head>
+
+<body>
+
+<!-- Start Message -->
+<table cellpadding="0" cellspacing="0" width="598" class="width292">
+<tr>
+    <td width="9" class="hide"></td>
+    <td width="249" align="left" valign="top" class="block width292"><img src="images/youritemsare.gif" width="249" height="29" alt="YOUR ITEMS ARE" class="paddingl10" style="display:block;" /></td>
+    <td width="211" align="left" valign="top" class="block width292"><img src="images/ontheirway.gif" width="211" height="29" alt="ON THEIR WAY" style="display:block;" class="paddingl12" /></td>
+    <td width="129" class="hide"></td>
+</tr>
+</table>
+
+<table cellpadding="0" cellspacing="0" width="598" class="width292">
+<tr><td colspan="2" height="20"></td></tr>
+<tr>
+    <td width="10"></td>
+    <td width="588" align="left" valign="top" class="width282">
+        <div style="font-family:Georgia, 'Times New Roman', Times, serif; font-size:16px; color:#5f5f5f; line-height:18px;">Good news! Your package has been <span class="block">sent from <a href="$clickthrough(storename1,cmite=storename1,StoreURLOut)$" style="color:#a42121; text-decoration:underline;">
+            $cond(empty(lookup(storename)),your local store,lookup(storename))$</a>.</span></div>
+        <table cellspacing="0" cellpadding="0"><tr><td height="14" style="font-size:14px; line-height:14px;">&nbsp;</td></tr></table>
+       
+<!-- Conditional to display dynamic content if carrier or tracking number is empty -->    
+
+$cond(or(empty(lookup(CarrierServiceLevels)),empty(lookup(TrackingNumber))),document(lookup(currentFolder),PackageShippedMessage_NoTracking),document(lookup(currentFolder),PackageShippedMessage))$
+
+
+        <table cellspacing="0" cellpadding="0"><tr><td height="12" style="font-size:12px; line-height:12px;">&nbsp;</td></tr></table>
+
+<!-- Conditional to display dynamic content if storename or telephone text is empty -->       
+
+$cond(or(empty(lookup(storename)),empty(lookup(TelephoneText))),document(lookup(currentFolder),ContactLocalStoreMessage),document(lookup(currentFolder),ContactStoreMessage))$
+
+
+
+        <table cellspacing="0" cellpadding="0"><tr><td height="14" style="font-size:14px; line-height:14px;">&nbsp;</td></tr></table>
+        <!-- CTA -->
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <td width="240" height="26" bgcolor="#990000" align="right"><div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:17px; color:#333333;"><a href="$clickthrough(shippingstatus,cmite=shippingstatus,ConfirmStoreShipmentStaticText2)$" style="color:#ffffff; text-decoration:none;"><span>CHECK YOUR SHIPPING STATUS</span></a></div></td>
+                <td width="29" height="26" bgcolor="#990000"><a href="$clickthrough(shippingstatus,cmite=shippingstatus,ConfirmStoreShipmentStaticText2)$"><img src="images/rarw.gif" width="29" height="26" style="display:block;" border="0" /></a></td>
+            </tr>
+        </table>
+        <!-- CTA -->
+    </td>
+</tr>
+</table>
+<!-- End Message -->
+    
+</body>
+</html>
+
+
+
+

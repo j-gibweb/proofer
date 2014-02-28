@@ -1,0 +1,39 @@
+
+
+<p id="notice"><%= notice %></p>
+
+<%if @parent_campaign %>
+<p>
+  <b>Parent Campaign:</b><br>
+  <%= link_to "#{@parent_campaign.name}" , @parent_campaign , class: "button success" %> <br><br>
+</p>
+<%end%>
+<p>
+	<%= link_to 'Edit Xml / Shell', edit_transactional_path(@transactional) , class: "button success" %> 	
+</p>
+
+<br><br><br>
+<%= link_to "Create New Xsl Module" , new_xsl_module_path(:transactional => @transactional), class: "button success" %> 
+<br><br>
+
+
+<p>
+  <b>Xsl Modules:</b> <br>	
+  <% @transactional.xsl_modules.each do |mod| %> 
+	<%= link_to "#{mod.order}" , mod , class: "button success" %><%= link_to 'Destroy', mod , method: :delete, data: { confirm: 'Are you sure?' } , class: "button alert" %>  
+  <%end%>
+</p>
+<br><br>
+<p>
+
+	<%= link_to "Send Test Email" , {:controller => :transactionals , :action => :send_test_email} , class: "button success"  %>
+
+  <br><br><br>
+  <b>Shell:</b>
+  <%= raw @transactional.shell %> <br><br>
+</p>
+
+<br>
+
+
+

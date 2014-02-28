@@ -1,0 +1,23 @@
+<h1>Listing promotionals</h1>
+
+<table>
+  <tr>
+    <th>Html</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @promotionals.each do |promotional| %>
+  <tr>
+    <td><%= promotional.html %></td>
+    <td><%= link_to 'Show', promotional %></td>
+    <td><%= link_to 'Edit', edit_promotional_path(promotional) %></td>
+    <td><%= link_to 'Destroy', promotional, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Promotional', new_promotional_path %>

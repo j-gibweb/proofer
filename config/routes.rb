@@ -1,35 +1,33 @@
 Proofer::Application.routes.draw do
+  resources :promotionals
+
+
+  resources :xsl_modules
+
+  resources :transactionals do
+    member do
+      get 'send_test_email'
+    end
+  end
   
-  # get "users/new"
+  resources :xsl_modules do
+    member do
+      get 'download_module'
+    end
+  end
 
-  # get "users/create"
-
-  # get "users/update"
-
-  # get "users/edit"
-
-  # get "users/destroy"
-
-  # get "users/index"
-
-  # get "users/show"
 
   resources :recipient_lists
   resources :campaigns
   resources :emails
   resources :users
 
-  # devise_for :users
-
   devise_for :users, :path => "auth", :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret' }
-
 
   root to: 'campaigns#index'
 
-
   # Is there a way to make this live in Application Controller?
   match"/deleteall" ,to:"Emails#delete_everything"  ##DELETE THIS
-
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

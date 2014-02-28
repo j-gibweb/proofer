@@ -15,4 +15,11 @@
 /tmp
 .elasticbeanstalk/
 
-# public/assets/
+/public/assets/emails/
+/public/assets/transactionals/
+/public/assets/promotionals/
+
+
+.DS_Store
+
+test_upload_files
