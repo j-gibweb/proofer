@@ -86,7 +86,7 @@ class EmailsController < ApplicationController
             notice = "#{@email.markup}" #fail notice w/ missing images array
             # makeshift and dumb - ps. I hate you Rails controller
             status = @email.status
-            @the_failed_email =  @email
+            @the_failed_email = @email
             @the_failed_email.remove_zip
             @the_failed_email.destroy
             # makeshift and dumb - ps. I hate you Rails controller
