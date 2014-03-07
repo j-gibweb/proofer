@@ -47,7 +47,7 @@ class Email < ActiveRecord::Base
 			url_param = tags[node.name]
 			src = node[url_param]
 			unless src == nil or src.include? "http" or src.length < 5 
-				if image_names_in_uploads_folder.include? src.split("/").last.sub(self.images_folder_name+"\/","") || ignore_images == true
+				if image_names_in_uploads_folder.include? src.split("/").last || ignore_images == true
 					uri = URI.parse(src)
 					node[url_param] = uri.path.sub(self.images_folder_name,"http://s3.amazonaws.com/proofer/#{self.campaign_name}/#{self.images_folder_name}") 
 				else 
@@ -98,20 +98,19 @@ class Email < ActiveRecord::Base
 		FileUtils.rm(zip) if remove_after
 	end
 
-	def upload_path
+	def upload_path # the path to the root of the uploaded zip
 		"#{File.dirname(self.folder.path)}"
 	end
 
-	def path_to_project
+	def path_to_project # the path to the .htm file within the uploaded zip
 		File.dirname(Dir[File.dirname(self.folder.path).to_s+"/**/*.htm*"][0])
-		# because sometimes .html files are just .htm  >:{  
 	end
 
-	def html_path
+	def html_path # just the html file path 
 		Dir["#{path_to_project}/*.htm*"][0]
 	end
 
-	def set_campaign_name
+	def set_campaign_name 
 		# campaign_name is used for the name of the S3 bucket, thus all the gibberish , name needs to be 100% unique & free of spaces / underscores
 		self.campaign_name = html_path.split("/").last.split(".").first[0..20].gsub(/ /,"").gsub(/_/,"-").gsub(/\+/,"-").downcase+"-#{Time.now.to_i}"
 		self.save
@@ -122,16 +121,17 @@ class Email < ActiveRecord::Base
 		self.save
 	end
 
-	def image_names_in_uploads_folder
+	def image_names_in_uploads_folder # returns an array full of all the images used in the email
+
+		#  check to see if this works when the email uses more than one "images" directory
+
 		Dir["#{path_to_project}/#{self.images_folder_name}/*"].map {|each| each.split("/").last}  
-		# Dir["#{path_to_project}/*/*"].map {|each| each.sub(path_to_project.to_s,"")} 
-		# this will only work if the folder with the images in it, is actually named images....  better to derive the name from the html
 	end
 
 	def parse_commented_conditionals
 		self.mso_conditionals = [] 
 		index = 0 
-		while self.html_file.match(/<!--(.*?)-->/m).to_s != "" do 
+		while self.html_file.match(/<!--(.*?)-->/m).to_s != "" do  # while there are any comments, i.e: mso fix code - replace the code with unique iden + a digit
 			self.mso_conditionals[index] = self.html_file.match(/<!--(.*?)-->/m).to_s
 			self.html_file.sub!( self.mso_conditionals[index] , "_COMMENT_#{index.to_s}" ) 
 			index += 1 
