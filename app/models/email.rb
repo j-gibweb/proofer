@@ -9,9 +9,6 @@ class Email < ActiveRecord::Base
 	require 'fog'
 	require 'open-uri'
 
-
-  validates_presence_of :folder 
-
   attr_accessible :recipients, :subject , :folder , :markup , :campaign_name , :status , :additional_recipients , :html_file_name 
 
   attr_accessor :parse_status , :html_file , :mso_conditionals , :images_folder_name
@@ -21,6 +18,10 @@ class Email < ActiveRecord::Base
   has_attached_file :folder ,
 	:url  => "/assets/:id/:basename.:extension",
 	:path => ":rails_root/public/assets/:id/:basename.:extension" 
+
+	validates_attachment_content_type :folder , :content_type => ["application/zip" , "text/html" , "text/htm"]
+
+	validates_presence_of :folder 
 
 	def parse_html(ignore_images) # ignore_images is boolean , it means, ignore images?
 		html_file = File.read("#{self.html_path}")
@@ -122,9 +123,6 @@ class Email < ActiveRecord::Base
 	end
 
 	def image_names_in_uploads_folder # returns an array full of all the images used in the email
-
-		#  check to see if this works when the email uses more than one "images" directory
-
 		Dir["#{path_to_project}/#{self.images_folder_name}/*"].map {|each| each.split("/").last}  
 	end
 
@@ -149,9 +147,7 @@ class Email < ActiveRecord::Base
 		end
 	end
 
-
 	def send_emails_via_ses(user , additional_recipients_only)
-		# HERE TEST 
 		if additional_recipients_only && self.additional_recipients
 			self.recipients = self.additional_recipients
 		elsif self.additional_recipients
@@ -164,8 +160,6 @@ class Email < ActiveRecord::Base
 	end
 
 	def send_email(recipient , user)
-		# these values need to be removed and set on the production server as ENV variables
-		# also var -> ses  could possibly be @ses and only instantiated once on the Class level - much like @connection
 		ses = AWS::SES::Base.new(:access_key_id => 'AKIAIIY3JNRNOMPO4ROA', :secret_access_key => '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')
 
 		ses.send_email(
@@ -190,7 +184,6 @@ class Email < ActiveRecord::Base
 		threads.each(&:join)
 	end
 
-
 	def self.clear_s3(user)
 		start = Time.now
 		FOG_STORAGE.directories.each do |directory|
@@ -209,13 +202,8 @@ class Email < ActiveRecord::Base
 	end
 
 	def remove_zip
-		# removes -r ./public/assets/{:id}/
-		# path = path_to_project if self.folder.path != nil
 		path = upload_path if self.folder.path != nil
 		system("rm -r #{path}")
-		# test with -rf
-		# system("rm -rf #{path}")
-		puts "folder deleted"
 	end
 
 

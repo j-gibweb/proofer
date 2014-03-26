@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140207151657) do
+ActiveRecord::Schema.define(:version => 20140207231418) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "name"
@@ -40,9 +40,8 @@ ActiveRecord::Schema.define(:version => 20140207151657) do
     t.text     "recipients"
     t.text     "markup"
     t.string   "campaign_name"
-    t.string   "status",                :default => "Testing"
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.string   "folder_file_name"
     t.string   "folder_content_type"
     t.integer  "folder_file_size"
@@ -66,6 +65,11 @@ ActiveRecord::Schema.define(:version => 20140207151657) do
   end
 
   add_index "recipient_lists_users", ["recipient_list_id", "user_id"], :name => "index_recipient_lists_users_on_recipient_list_id_and_user_id"
+
+  create_table "uploads", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",    :null => false

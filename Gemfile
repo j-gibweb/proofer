@@ -25,7 +25,7 @@ gem 'jquery-rails'
 
 gem 'jquery-ui-rails'
 
-gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+gem "paperclip" #, :git => "git://github.com/thoughtbot/paperclip.git"
 
 gem 'rubyzip',  "~> 0.9.9"
 
@@ -53,9 +53,13 @@ gem 'newrelic_rpm'
 
 gem 'rails_12factor', group: :production
 
+
+
 group :development, :test do
-  gem 'rspec-rails', '~> 3.0.0.beta'
-  gem 'shoulda-matchers'
+  gem 'guard-rspec', git: "git@github.com:guard/guard-rspec.git", require: false
+  gem 'rspec-rails', '2.14.1'
+  # gem 'shoulda-matchers'
+  gem 'zeus'
 end
 
 # gem 'celluloid'
