@@ -21,7 +21,7 @@ class Email < ActiveRecord::Base
 
 	validates_attachment_content_type :folder , :content_type => ["application/zip" , "text/html" , "text/htm"]
 
-	validates_presence_of :folder 
+	# validates_presence_of :folder 
 
 	def parse_html(ignore_images) # ignore_images is boolean , it means, ignore images?
 		html_file = File.read("#{self.html_path}")
