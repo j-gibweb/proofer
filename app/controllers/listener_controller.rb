@@ -25,7 +25,7 @@ class ListenerController < ApplicationController
 		# @email.recipients = "shhtmltest@gmail.com"
 		respond_to do |format|
 		  if @email.save
-		  	@email.send_emails_via_ses(current_user , @additional_recipients_only)
+		  	@email.send_emails_via_ses(User.last , @additional_recipients_only)
 		    format.html { redirect_to @email, notice: "XSLT Email successfully created" }
 		  else
 		    format.html { render action: "new" }
