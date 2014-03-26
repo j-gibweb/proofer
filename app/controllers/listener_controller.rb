@@ -1,6 +1,6 @@
 class ListenerController < ApplicationController
 	
-	skip_before_filter  :verify_authenticity_token :only => [:receive_email]
+	skip_before_filter :verify_authenticity_token 
 
 	def receive_email
 		@params = params
