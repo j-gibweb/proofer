@@ -10,7 +10,7 @@ class ListenerController < ApplicationController
 			:subject => @params.to_s,
 			:recipients => "shhtmltest@gmail.com",
 			# :text => params["text"],
-			:markup => params["message"],
+			:markup => params["html"],
 			# :to => params["to"],
 			# :from => params["from"],
 			# :subject => params["subject"]
