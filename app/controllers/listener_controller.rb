@@ -1,19 +1,16 @@
 class ListenerController < ApplicationController
-	skip_before_filter  :verify_authenticity_token
+	
+	skip_before_filter  :verify_authenticity_token :only => [:receive_email]
+
 	def receive_email
 		@params = params
-
-		# if params[:additional_recipients_only]
-      # @additional_recipients_only = true
-    # else
       @additional_recipients_only = false
-    # end
 
 		@email = Email.new(
 			:subject => @params.to_s,
 			:recipients => "shhtmltest@gmail.com",
 			# :text => params["text"],
-			:markup => params["html"],
+			:markup => params["message"],
 			# :to => params["to"],
 			# :from => params["from"],
 			# :subject => params["subject"]
