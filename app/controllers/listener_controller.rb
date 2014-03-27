@@ -13,13 +13,13 @@ class ListenerController < ApplicationController
 			:markup => params["html"],
 			# :to => params["to"],
 			# :from => params["from"],
-			:subject => params["subject"]
+			:subject => "XSLT / XML TEST"
 			)
 		if @email.markup.nil?
 			@email.markup = "The body was empty for some reason"
 		end
 		scrubbed_html = @email.markup.match(/<!-- Beginning of XSLT Code -->(.*?)<!-- End of XSLT Code -->/m)
-		@email.markup = scrubbed_html
+		@email.markup = scrubbed_html.to_s
 		
 
 		respond_to do |format|
