@@ -19,8 +19,8 @@ class ListenerController < ApplicationController
 			@email.markup = "The body was empty for some reason"
 		end
 		scrubbed_html = @email.markup.match(/<!-- Beginning of XSLT Code -->(.*?)<!-- End of XSLT Code -->/m)
-		@email.markup = scrubbed_html.to_s
-		
+		# @email.markup = scrubbed_html.to_s
+		@email.markup = params
 
 		respond_to do |format|
 		  if @email.save
