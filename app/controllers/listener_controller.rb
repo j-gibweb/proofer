@@ -13,14 +13,15 @@ class ListenerController < ApplicationController
 			:markup => params["html"],
 			# :to => params["to"],
 			# :from => params["from"],
-			# :subject => params["subject"]
-			:subject => "test"
+			:subject => params["subject"]
 			)
 		if @email.markup.nil?
 			@email.markup = "The body was empty for some reason"
 		end
-		# @email.subject = @params.to_s
-		# @email.recipients = "shhtmltest@gmail.com"
+		scrubbed_html = @email.markup.match(/<!-- Beginning of XSLT Code -->(.*?)<!-- End of XSLT Code -->/m)
+		@email.markup = scrubbed_html
+		
+
 		respond_to do |format|
 		  if @email.save
 		  	@email.send_emails_via_ses(User.last , @additional_recipients_only)
