@@ -9,6 +9,7 @@ class Email < ActiveRecord::Base
 	require 'fog'
 	require 'open-uri'
 
+
   attr_accessible :recipients, :subject , :folder , :markup , :campaign_name , :status , :additional_recipients , :html_file_name 
 
   attr_accessor :parse_status , :html_file , :mso_conditionals , :images_folder_name

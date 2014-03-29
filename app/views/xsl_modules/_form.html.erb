@@ -1,0 +1,29 @@
+<%= form_for(@xsl_module) do |f| %>
+  <% if @xsl_module.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@xsl_module.errors.count, "error") %> prohibited this xsl_module from being saved:</h2>
+
+      <ul>
+      <% @xsl_module.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :xsl %><br />
+    <%= f.text_area :xsl %>
+  </div>
+  <div class="field">
+    <%= f.label :order %><br />
+    <%= f.number_field :order %>
+  </div>
+  <div class="field">
+    <%#= f.label :transactional %><br />
+    <%#= f.text_field :transactional %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

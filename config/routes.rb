@@ -1,4 +1,10 @@
 Proofer::Application.routes.draw do
+  resources :xsl_modules
+
+
+  resources :transactionals
+
+
   resources :recipient_lists
   resources :campaigns
   resources :emails

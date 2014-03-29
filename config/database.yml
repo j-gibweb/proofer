@@ -17,13 +17,13 @@ development:
   username: jweber
   password:
 
-# test:
-#   adapter: postgresql
-#   encoding: unicode
-#   database: myapp_test
-#   pool: 20
-#   username: jweber
-#   password:
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: myapp_test
+  pool: 20
+  username: jweber
+  password:
 
 #   production:
 #     adapter: postgresql
@@ -40,17 +40,17 @@ development:
 #   pool: 5
 #   timeout: 5000
 
-test:
-  adapter: sqlite3
-  database: db/test.sqlite3
-  pool: 5
-  timeout: 5000
+# test:
+#   adapter: sqlite3
+#   database: db/test.sqlite3
+#   pool: 5
+#   timeout: 5000
 
-production:
-  adapter: sqlite3
-  database: db/production.sqlite3
-  pool: 5
-  timeout: 5000
+# production:
+#   adapter: sqlite3
+#   database: db/production.sqlite3
+#   pool: 5
+#   timeout: 5000
 
 
 # Warning: The database defined as "test" will be erased and

@@ -1,0 +1,27 @@
+<h1>Listing xsl_modules</h1>
+
+<table>
+  <tr>
+    <th>Xsl</th>
+    <th>Order</th>
+    <th>Transactional</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @xsl_modules.each do |xsl_module| %>
+  <tr>
+    <td><%= xsl_module.xsl %></td>
+    <td><%= xsl_module.order %></td>
+    <td><%= xsl_module.transactional %></td>
+    <td><%= link_to 'Show', xsl_module %></td>
+    <td><%= link_to 'Edit', edit_xsl_module_path(xsl_module) %></td>
+    <td><%= link_to 'Destroy', xsl_module, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Xsl module', new_xsl_module_path %>

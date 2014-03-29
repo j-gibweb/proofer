@@ -7,16 +7,20 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
+puts "Seeding data"
+
 u = User.new
 u.email = "sample@sample.com"
+u.name = "Tester"
 u.password = "html1234"
+u.confirmed_user = true
 u.is_admin = true
 u.save
 
-c = User.new
-c.email = "sample2@sample.com"
-c.password = "html1234"
-c.save
+# c = User.new
+# c.email = "sample2@sample.com"
+# c.password = "html1234"
+# c.save
 
 lists = RecipientList.all
 if lists.empty?

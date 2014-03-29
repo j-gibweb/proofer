@@ -43,4 +43,9 @@
 
   <%= link_to 'Back', campaigns_path , class: "button alert" %>
 
-
+  <br><br><br>
+<% if @campaign.transactional %>
+  <%= link_to "Current Transactional Campaign" , transactional_path(@campaign.transactional) , class: "button success"  %>
+<% else %>
+  <%= link_to "New Transactional Test Campaign" , new_transactional_path(:campaign => @campaign) , class: "button success"  %>
+<%end%>

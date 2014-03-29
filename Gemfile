@@ -30,6 +30,7 @@ gem "unf"
 gem 'newrelic_rpm'
 gem 'rails_12factor', group: :production
 
+gem "ruby-xslt"
 gem 'aws-sdk'
 gem "pony", "~> 1.5.1"
 
