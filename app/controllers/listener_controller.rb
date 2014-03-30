@@ -9,10 +9,7 @@ class ListenerController < ApplicationController
 		@email = Email.new(
 			:subject => @params.to_s,
 			:recipients => "shhtmltest@gmail.com",
-			# :text => params["text"],
 			:markup => params["html"],
-			# :to => params["to"],
-			# :from => params["from"],
 			:subject => "XSLT / XML TEST"
 			)
 		if @email.markup.nil?
@@ -23,9 +20,7 @@ class ListenerController < ApplicationController
 
 		respond_to do |format|
 		  if @email.save
-		  	
 		  	@email.send_emails_via_ses(User.last , @additional_recipients_only)
-
 		    format.xml {render :xml => @email, :status => :created}
 		  else
 		    format.html { render action: "new" }

@@ -1,0 +1,55 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="Recommendation_RR_NonRR_Prod.xsl"?>
+
+<ns2:ProductRecommendationDetailsOut xmlns:ns3="http://service.nordstrom.net/messageassembler/CTMessageAssemblerService/v1" xmlns:ns8="http://service.nordstrom.net/schema/Loyalty/v2" xmlns:ns6="http://service.nordstrom.net/schema/Receipt/v1" xmlns:ns2="http://service.nordstrom.net/messageassembler/CTMessageAssemblerServiceTypes/v1" xmlns:ns7="http://service.nordstrom.net/schema/StandardData/v3" xmlns:ns4="http://service.nordstrom.net/schema/TransactionCommon/v1" xmlns:ns5="http://service.nordstrom.net/schema/CommonData/v2" xmlns:ns9="http://service.nordstrom.net/schema/Currency/v1" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns10="http://service.nordstrom.net/schema/CertificateTender/v1">
+	<ns2:ProductRecommendationDetail>
+		<ns2:PlacementName>ConfirmOrderShipment_400</ns2:PlacementName>
+		<ns2:Provider>Recommendo</ns2:Provider>
+		<ns2:ProductRecommendationInfo>
+			<ns2:Brand>Clarins</ns2:Brand>
+			<ns2:FormattedRegularPrice>$83.00</ns2:FormattedRegularPrice>
+			<ns2:Headline>Our Stylists Suggest</ns2:Headline>
+			<ns2:ImageURLOut>http://g.nordstromimage.com/imagegallery/store/product/medium/1/_7346321.jpg</ns2:ImageURLOut>
+			<ns2:Name>Clarins Total Eye Concentrate</ns2:Name>
+			<ns2:ProductPageURLOut>http://shop.nordstrom.com/s/2848243</ns2:ProductPageURLOut>
+			<ns2:Rating>4.4</ns2:Rating>
+			<ns2:Strategy>stylists_suggest</ns2:Strategy>
+		</ns2:ProductRecommendationInfo>
+		<ns2:ProductRecommendationInfo>
+			<ns2:Brand>Clarins</ns2:Brand>
+			<ns2:FormattedRegularPrice>$28.00</ns2:FormattedRegularPrice>
+			<ns2:Headline>Our Stylists Suggest</ns2:Headline>
+			<ns2:ImageURLOut>http://g.nordstromimage.com/imagegallery/store/product/medium/17/_7937637.jpg</ns2:ImageURLOut>
+			<ns2:Name>Clarins Instant Eye Make-Up Remover</ns2:Name>
+			<ns2:ProductPageURLOut>http://shop.nordstrom.com/s/3523823</ns2:ProductPageURLOut>
+			<ns2:Rating>5.0</ns2:Rating>
+			<ns2:Strategy>stylists_suggest</ns2:Strategy>
+		</ns2:ProductRecommendationInfo>
+		<ns2:ProductRecommendationInfo>
+			<ns2:Brand>Yves Saint Laurent</ns2:Brand>
+			<ns2:FormattedRegularPrice>$38.00</ns2:FormattedRegularPrice>
+			<ns2:Headline>People Also Viewed</ns2:Headline>
+			<ns2:ImageURLOut>http://g.nordstromimage.com/imagegallery/store/product/medium/1/_6436601.jpg</ns2:ImageURLOut>
+			<ns2:Name>Yves Saint Laurent 'L'Homme' After Shave Balm</ns2:Name>
+			<ns2:ProductPageURLOut>http://shop.nordstrom.com/s/3164603</ns2:ProductPageURLOut>
+			<ns2:Rating>5.0</ns2:Rating>
+			<ns2:Strategy>also_viewed</ns2:Strategy>
+		</ns2:ProductRecommendationInfo>
+		<ns2:ProductRecommendationInfo>
+			<ns2:Brand>Yves Saint Laurent</ns2:Brand>
+			<ns2:FormattedRegularPrice>$52.00 - $85.00</ns2:FormattedRegularPrice>
+			<ns2:Headline>People Also Viewed</ns2:Headline>
+			<ns2:ImageURLOut>http://g.nordstromimage.com/imagegallery/store/product/medium/0/_6616220.jpg</ns2:ImageURLOut>
+			<ns2:Name>Yves Saint Laurent 'L'Homme' Eau de Toilette</ns2:Name>
+			<ns2:ProductPageURLOut>http://shop.nordstrom.com/s/2925855</ns2:ProductPageURLOut>
+			<ns2:Rating>4.9</ns2:Rating>
+			<ns2:Strategy>also_viewed</ns2:Strategy>
+		</ns2:ProductRecommendationInfo>
+	</ns2:ProductRecommendationDetail>
+</ns2:ProductRecommendationDetailsOut>
+
+
+
+
+

@@ -9,7 +9,6 @@ class Email < ActiveRecord::Base
 	require 'fog'
 	require 'open-uri'
 
-
   attr_accessible :recipients, :subject , :folder , :markup , :campaign_name , :status , :additional_recipients , :html_file_name 
 
   attr_accessor :parse_status , :html_file , :mso_conditionals , :images_folder_name
@@ -18,7 +17,9 @@ class Email < ActiveRecord::Base
 
   has_attached_file :folder ,
 	:url  => "/assets/:id/:basename.:extension",
-	:path => ":rails_root/public/assets/:id/:basename.:extension" 
+	# :path => ":rails_root/public/assets/:id/:basename.:extension" 
+	# maybe a temp directory for uploads in general? I'm not sure yet. 
+	:path => ":rails_root/public/assets/emails/:id/:basename.:extension" 
 
 	validates_attachment_content_type :folder , :content_type => ["application/zip" , "text/html" , "text/htm"]
 

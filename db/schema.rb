@@ -70,21 +70,13 @@ ActiveRecord::Schema.define(:version => 20140328233710) do
   create_table "transactionals", :force => true do |t|
     t.text     "xml"
     t.text     "shell"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.integer  "campaign_id"
-  end
-
-  create_table "uploads", :force => true do |t|
     t.string   "folder_file_name"
     t.string   "folder_content_type"
     t.integer  "folder_file_size"
     t.datetime "folder_updated_at"
-    t.integer  "transactional_id"
-    t.integer  "xml_module_id"
-    t.integer  "email_id"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+    t.integer  "campaign_id"
   end
 
   create_table "users", :force => true do |t|

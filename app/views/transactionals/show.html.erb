@@ -1,3 +1,5 @@
+
+
 <p id="notice"><%= notice %></p>
 
 <%= link_to "Create New Xsl Module" , new_xsl_module_path(:transactional => @transactional), class: "button success" %> 
@@ -20,13 +22,11 @@
 <p>
   <b>Shell:</b>
   <%= raw @transactional.shell %> <br><br>
-  <b>Raw Html:</b> <br>
-  <%= @transactional.shell %>
 </p>
 <p>
-  <b>Xml:</b>
-  <%= @transactional.xml %>
+  <!-- <b>Xml:</b> -->
+  <%#= @transactional.xml %>
 </p>
 
-<br><br>
-<%= @modules %>
+<%= @transactional.folder %>
+
