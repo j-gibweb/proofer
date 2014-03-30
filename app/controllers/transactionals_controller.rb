@@ -1,6 +1,7 @@
 class TransactionalsController < ApplicationController
   include UploadHandler
-  
+  include HtmlParser
+
   def index
     @transactionals = Transactional.all
     respond_to do |format|
@@ -13,8 +14,14 @@ class TransactionalsController < ApplicationController
   def show
     @transactional = Transactional.find(params[:id])
     @parent_campaign = Campaign.find(@transactional.campaign_id)
+    
     collect_ri_module_requests_from_html @transactional
     replace_ri_modules_with_xsl_modules @transactional , @modules
+
+    @test = Dir["#{File.dirname(@transactional.folder.path)}/**/*"]
+
+    @html = @transactional.shell
+    highlight_invalid_chars @html
 
     respond_to do |format|
       format.html # show.html.erb
@@ -55,13 +62,21 @@ class TransactionalsController < ApplicationController
     @transactional = Transactional.find(params[:id])
   end
 
+  def handle_assets object
+    if Dir["#{File.dirname(object.folder.path)}/*"].find {|e| /.zip/ =~ e }
+      unzip object.folder.path, File.dirname(object.folder.path) , true 
+    end
+    push_assets_to_s3 object , "proofer-stage" # second argument is the s3 bucket name
+
+  end
+
   def create
     @transactional = Transactional.new(params[:transactional])
     @parent_campaign_id = params[:campaign].keys.first 
     
-    
     respond_to do |format|
       if @transactional.save
+        
         Campaign.find(@parent_campaign_id).transactional = @transactional
         handle_assets @transactional
 
@@ -72,11 +87,6 @@ class TransactionalsController < ApplicationController
         format.json { render json: @transactional.errors, status: :unprocessable_entity }
       end
     end
-  end
-
-  def handle_assets object
-    unzip object.folder.path, File.dirname(object.folder.path) , true 
-    # push_assets_to_s3 object
   end
 
   def update
