@@ -19,31 +19,34 @@ require 'zip/zip'
 	end
 
 	def recursive_remove_file path
+		# this can't be right
 		system("rm -r #{path}") if path
 	end
 
 	def push_assets_to_s3 object , bucket
 		threads = []
-		file_paths.each do |f|
+		inner_file_paths(object).each do |f|
 			next if File.directory?(f)
 			threads << Thread.new{
-				f_path = f.sub(File.dirname(f), "#{object.class}_#{object.id}/#{images_folder_name(object)}".downcase )
-				file = directory(bucket).files.create( :key => "#{f_path}", :body => File.open(f), :public => true )	
+			puts "\n\n\nuploading an image\n\n\n"
+				f_path = f.sub(File.dirname(f), "#{object.unique_s3_name}/#{images_dir_name(object)}".downcase )
+				file = s3_directory(bucket).files.create( :key => "#{f_path}", :body => File.open(f), :public => true )	
 			}
 		end
+		puts "joining the threads\n\n"
 		threads.each(&:join)
 	end
 
-	def images_folder_name
+	def images_dir_name object
 		File.basename(Dir["#{File.dirname(object.folder.path)}/*"].first)
 	end
 
-	def directory bucket
+	def s3_directory bucket
 		FOG_STORAGE.directories.get(bucket)
 	end
 
-	def file_paths object
-		Dir["#{File.dirname(object.folder.path)}/**/*"]
+	def inner_file_paths object
+		Dir["#{File.dirname(object.folder.path)}/**/*"] 
 	end
 
 end
