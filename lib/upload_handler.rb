@@ -23,18 +23,27 @@ require 'zip/zip'
 	end
 
 	def push_assets_to_s3 object , bucket
-		file_paths = Dir["#{File.dirname(object.folder.path)}/**/*"]
-		images_folder_name = File.basename(Dir["#{File.dirname(object.folder.path)}/*"].first)
-		directory = FOG_STORAGE.directories.get(bucket)
 		threads = []
 		file_paths.each do |f|
 			next if File.directory?(f)
 			threads << Thread.new{
-				f_path = f.sub(File.dirname(f), "#{object.class}_#{object.id}/#{images_folder_name}".downcase )
-				file = directory.files.create( :key => "#{f_path}", :body => File.open(f), :public => true )	
+				f_path = f.sub(File.dirname(f), "#{object.class}_#{object.id}/#{images_folder_name(object)}".downcase )
+				file = directory(bucket).files.create( :key => "#{f_path}", :body => File.open(f), :public => true )	
 			}
 		end
 		threads.each(&:join)
+	end
+
+	def images_folder_name
+		File.basename(Dir["#{File.dirname(object.folder.path)}/*"].first)
+	end
+
+	def directory bucket
+		FOG_STORAGE.directories.get(bucket)
+	end
+
+	def file_paths object
+		Dir["#{File.dirname(object.folder.path)}/**/*"]
 	end
 
 end
