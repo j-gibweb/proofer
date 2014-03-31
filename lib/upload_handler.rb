@@ -29,11 +29,10 @@ require 'zip/zip'
 		threads = []
 		file_paths.each do |f|
 			next if File.directory?(f)
-			# threads << Thread.new{
+			threads << Thread.new{
 				f_path = f.sub(File.dirname(f), "#{object.class}_#{object.id}/#{images_folder_name}".downcase )
-				# file = directory.files.create( :key => "#{f_path}/#{images_folder_name}", :body => File.open("#{f}"), :public => true )	
 				file = directory.files.create( :key => "#{f_path}", :body => File.open(f), :public => true )	
-			# }
+			}
 		end
 		threads.each(&:join)
 	end
