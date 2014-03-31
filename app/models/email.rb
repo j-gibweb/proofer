@@ -44,7 +44,6 @@ class Email < ActiveRecord::Base
 		self.images_folder_name = page.search(tags.first[0]).first.first[1].split("/").first
 
 		images_missing_from_folder = []
-
 		# parse HTML with nokogiri 
 		page.search(tags.keys.join(",")).each do |node|
 			url_param = tags[node.name]

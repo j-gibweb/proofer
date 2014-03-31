@@ -15,13 +15,10 @@ class TransactionalsController < ApplicationController
     @transactional = Transactional.find(params[:id])
     @parent_campaign = Campaign.find(@transactional.campaign_id)
     
-    collect_ri_module_requests_from_html @transactional
-    replace_ri_modules_with_xsl_modules @transactional , @modules
-
-    @test = Dir["#{File.dirname(@transactional.folder.path)}/**/*"]
-
-    @html = @transactional.shell
-    highlight_invalid_chars @html
+    collect_ri_module_requests_from_html(@transactional)
+    replace_ri_modules_with_xsl_modules(@transactional , @modules)
+    
+    @transactional.shell = go_nokogiri!(@transactional , @transactional.shell , @transactional.folder.path , "proofer-stage")
 
     respond_to do |format|
       format.html # show.html.erb
@@ -31,14 +28,13 @@ class TransactionalsController < ApplicationController
 
   def replace_ri_modules_with_xsl_modules transactional , modules
     modules.each_with_index do |mod , i|
-      i+=1 # because computers index from zero, but we dont.
+      i+=1 # because computers index from zero, and we dont.
       @transactional.shell.sub!(mod , i.to_s) 
     end
     @transactional.xsl_modules.each do |xsl_mod|
       @transactional.shell.sub!(/\$#{xsl_mod.order.to_s}\$/, xsl_mod.xslt)
     end
   end
-
   def collect_ri_module_requests_from_html(html)
     @modules = @transactional.shell.scan(/\$(.*?)\$/m).flatten
     @modules.each_with_index do |mod , i|

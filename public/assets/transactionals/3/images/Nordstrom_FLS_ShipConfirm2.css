@@ -1,0 +1,25 @@
+@charset "UTF-8";
+/* CSS Document */
+
+@media all and (max-width: 600px){
+		.phone_num a { color:#990000 !important; text-decoration:underline !important;  }
+		.order_num a { color:#646464 !important; text-decoration:none !important; }
+		.cust_email a { color:#010101 !important; text-decoration:none !important; }
+		
+		*[class].height101  {height: 101px !important;}
+		
+		*[class].width13 {width:13px !important;}
+		*[class].width66 {width:66px !important;}
+		*[class].width206 {width:206px !important;}
+		*[class].width279 {width:279px !important;}
+		*[class].width282 {width:282px !important;}
+		*[class].width284 {width:284px !important;}
+		*[class].width300 {width:300px !important;}
+				
+		*[class].paddingr6 {padding-right:6px !important;}
+		
+		*[class].paddingl10 {padding-left:10px !important;}
+		*[class].paddingl22 {padding-left:22px !important;}
+		
+		
+	}

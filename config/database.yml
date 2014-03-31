@@ -9,21 +9,21 @@
 #   pool: 5
 #   timeout: 5000
 
-development:
-  adapter: postgresql
-  encoding: unicode
-  database: myapp_development
-  pool: 20
-  username: jweber
-  password:
+# development:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: myapp_development
+#   pool: 20
+#   username: jweber
+#   password:
 
-test:
-  adapter: postgresql
-  encoding: unicode
-  database: myapp_test
-  pool: 20
-  username: jweber
-  password:
+# test:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: myapp_test
+#   pool: 20
+#   username: jweber
+#   password:
 
 #   production:
 #     adapter: postgresql
@@ -34,17 +34,17 @@ test:
 #     password:
 
 
-# development:
-#   adapter: sqlite3
-#   database: db/development.sqlite3
-#   pool: 5
-#   timeout: 5000
+development:
+  adapter: sqlite3
+  database: db/development.sqlite3
+  pool: 5
+  timeout: 5000
 
-# test:
-#   adapter: sqlite3
-#   database: db/test.sqlite3
-#   pool: 5
-#   timeout: 5000
+test:
+  adapter: sqlite3
+  database: db/test.sqlite3
+  pool: 5
+  timeout: 5000
 
 # production:
 #   adapter: sqlite3

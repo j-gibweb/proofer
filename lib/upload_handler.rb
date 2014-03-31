@@ -22,16 +22,18 @@ require 'zip/zip'
 		system("rm -r #{path}") if path
 	end
 
-	def push_assets_to_s3 object_with_assets , bucket
-		file_paths = Dir["#{File.dirname(object_with_assets.folder.path)}/**/*"]
+	def push_assets_to_s3 object , bucket
+		file_paths = Dir["#{File.dirname(object.folder.path)}/**/*"]
+		images_folder_name = File.basename(Dir["#{File.dirname(object.folder.path)}/*"].first)
 		directory = FOG_STORAGE.directories.get(bucket)
 		threads = []
 		file_paths.each do |f|
 			next if File.directory?(f)
-			threads << Thread.new{
-				f_path = f.sub(File.dirname(f), "#{object_with_assets.class}_#{object_with_assets.id}".downcase )
-				file = directory.files.create( :key => "#{f_path}", :body => File.open("#{f}"), :public => true )	
-			}
+			# threads << Thread.new{
+				f_path = f.sub(File.dirname(f), "#{object.class}_#{object.id}/#{images_folder_name}".downcase )
+				# file = directory.files.create( :key => "#{f_path}/#{images_folder_name}", :body => File.open("#{f}"), :public => true )	
+				file = directory.files.create( :key => "#{f_path}", :body => File.open(f), :public => true )	
+			# }
 		end
 		threads.each(&:join)
 	end

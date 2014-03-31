@@ -18,7 +18,7 @@ end
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem "paperclip" #, :git => "git://github.com/thoughtbot/paperclip.git"
+gem "paperclip" , :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'rubyzip',  "~> 0.9.9"
 gem "aws-ses", "~> 0.5.0"
 gem "fog"
@@ -35,9 +35,9 @@ gem 'aws-sdk'
 gem "pony", "~> 1.5.1"
 
 group :development, :test do
-	# gem 'sqlite3'
-	gem 'pg'
-  gem 'guard-rspec', git: "git@github.com:guard/guard-rspec.git", require: false
+	gem 'sqlite3'
+	# gem 'pg'
+  gem 'guard-rspec', require: false
   gem 'rspec-rails', '2.14.1'
   gem 'zeus'
 end
