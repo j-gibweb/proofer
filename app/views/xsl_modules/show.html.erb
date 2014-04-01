@@ -13,11 +13,6 @@
 <p>
   <b>Parent Transactional:</b><br>
   <%= link_to "#{@parent_campaign.name} Transactional Shell" , @xsl_module.transactional , class: "button success" %> <br><br><br>
-  <b>Parent Campaign:</b><br>
-  <%= link_to "#{@parent_campaign.name} #{@parent_campaign.client_name}" , @parent_campaign , class: "button success" %>
 </p>
-
-<br><br><br>
 <%= link_to 'Edit', edit_xsl_module_path(@xsl_module) , class: "button alert" %> 
-<%#= link_to 'Back', xsl_modules_path %>
 <br><br>

@@ -10,10 +10,6 @@ class Transactional < ActiveRecord::Base
 
 	validates_attachment_content_type :folder , :content_type => ["application/zip" , "text/html" , "text/htm"]
 
-	def unique_s3_name 
-		"#{self.class}_#{self.created_at}".gsub!(/:/,"").gsub!(/ /,"_").gsub!(/-/,"_").downcase
-	end
-
 	def handle_ri_module_requests_in_html
 	  @modules = self.shell.scan(/\$(.*?)\$/m).flatten
 	  @modules.each_with_index do |mod , i|
@@ -30,7 +26,7 @@ class Transactional < ActiveRecord::Base
 	    self.shell.sub!(mod , i.to_s) 
 	  end
 	  self.xsl_modules.each do |xsl_mod|
-	    self.shell.sub!(/\$#{xsl_mod.order.to_s}\$/, xsl_mod.xslt)
+	    self.shell.sub!(/\$#{xsl_mod.order.to_s}\$/, xsl_mod.xslt) if xsl_mod.xslt
 	  end
 	end
 

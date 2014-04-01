@@ -28,12 +28,10 @@ require 'zip/zip'
 		inner_file_paths(object).each do |f|
 			next if File.directory?(f)
 			threads << Thread.new{
-			puts "\n\n\nuploading an image\n\n\n"
 				f_path = f.sub(File.dirname(f), "#{object.unique_s3_name}/#{images_dir_name(object)}".downcase )
 				file = s3_directory(bucket).files.create( :key => "#{f_path}", :body => File.open(f), :public => true )	
 			}
 		end
-		puts "joining the threads\n\n"
 		threads.each(&:join)
 	end
 

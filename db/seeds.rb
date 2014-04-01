@@ -31,7 +31,7 @@ unless User.find_by_email("sample@sample.com").campaigns.first.transactional
 	puts "Creating Transactional and adding it to User.campaigns.transactional"
 	tmp = Transactional.create(
 		:shell => File.read(Rails.root+"test_upload_files/transactionals/full_campaign/Transactional_FLS_ShipConfirm_Shell.htm"),
-		:xml => File.read(Rails.root+"test_upload_files/transactionals/single_module/ProductRecommendationDetailsOut.xml")
+		:xml => File.read(Rails.root+"test_upload_files/transactionals/single_module/ProductRecommendationDetailsOut.xml"),
 		# :folder => Rails.root+"/test_upload_files/transactionals/full_campaign/images.zip"
 		)
 	User.first.campaigns.first.transactional = tmp

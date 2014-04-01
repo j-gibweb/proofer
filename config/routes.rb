@@ -2,8 +2,11 @@ Proofer::Application.routes.draw do
   resources :xsl_modules
 
 
-  resources :transactionals
-
+  resources :transactionals do
+    member do
+      get 'send_test_email'
+    end
+  end
 
   resources :recipient_lists
   resources :campaigns
