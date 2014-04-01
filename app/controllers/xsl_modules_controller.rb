@@ -2,7 +2,6 @@ class XslModulesController < ApplicationController
   include HtmlParser
   def index
     @xsl_modules = XslModule.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @xsl_modules }
@@ -12,7 +11,6 @@ class XslModulesController < ApplicationController
   def show
     @xsl_module = XslModule.find(params[:id])
     @parent_campaign = Campaign.find(@xsl_module.transactional.campaign_id)
-    # @xsl_module.xslt = go_nokogiri!(@xsl_module , @xsl_module.xslt , @xsl_module.transactional.folder.path , "proofer-stage") if @xsl_module.transactional.folder.path
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @xsl_module }
@@ -20,7 +18,7 @@ class XslModulesController < ApplicationController
   end
 
   def new
-    @xsl_module = XslModule.new
+    @xsl_module = XslModule.new(:order => 1)
     @parent_transactional = params[:transactional]
     respond_to do |format|
       format.html # new.html.erb
@@ -34,10 +32,11 @@ class XslModulesController < ApplicationController
 
   def create
     @xsl_module = XslModule.new(params[:xsl_module])
-    @xsl_module.xslt = @xsl_module.generate_xslt @xsl_module
+    @parent = Transactional.find(params[:transactional].keys.first)
+    @parent.xsl_modules << @xsl_module
+    handle_xslt @xsl_module
     respond_to do |format|
       if @xsl_module.save
-        Transactional.find(params[:transactional].keys.first).xsl_modules << @xsl_module
         format.html { redirect_to @xsl_module, notice: "#{params[:xsl]}Xsl module was successfully created." }
         format.json { render json: @xsl_module, status: :created, location: @xsl_module }
       else
@@ -50,6 +49,7 @@ class XslModulesController < ApplicationController
   def update
     @xsl_module = XslModule.find(params[:id])
     @xsl_module.xslt = @xsl_module.generate_xslt @xsl_module
+    handle_xslt @xsl_module
     respond_to do |format|
       if @xsl_module.update_attributes(params[:xsl_module])
         format.html { redirect_to @xsl_module, notice: 'Xsl module was successfully updated.' }
@@ -69,4 +69,10 @@ class XslModulesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def handle_xslt xsl_module
+    xsl_module.xslt = xsl_module.generate_xslt xsl_module
+    xsl_module.xslt = go_nokogiri!(xsl_module.transactional , xsl_module.xslt , xsl_module.transactional.folder.path , "proofer-stage") if xsl_module.transactional.folder.path
+  end
+
 end

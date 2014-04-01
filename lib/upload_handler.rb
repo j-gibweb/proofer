@@ -19,16 +19,16 @@ require 'zip/zip'
 	end
 
 	def recursive_remove_file path
-		# this can't be right
+		# this can't be right use FileUtils.rm(zip) or something
 		system("rm -r #{path}") if path
 	end
 
-	def push_assets_to_s3 object , bucket
+	def push_assets_to_s3 object , bucket 
 		threads = []
 		inner_file_paths(object).each do |f|
 			next if File.directory?(f)
 			threads << Thread.new{
-				f_path = f.sub(File.dirname(f), "#{object.unique_s3_name}/#{images_dir_name(object)}".downcase )
+				f_path = f.sub(File.dirname(f), "#{unique_s3_name(object)}/#{images_dir_name(object)}".downcase )
 				file = s3_directory(bucket).files.create( :key => "#{f_path}", :body => File.open(f), :public => true )	
 			}
 		end

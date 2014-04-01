@@ -15,4 +15,5 @@
 /tmp
 .elasticbeanstalk/
 
-# public/assets/
+/public/assets/emails
+/public/assets/transactionals

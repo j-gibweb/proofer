@@ -17,7 +17,7 @@ class Transactional < ActiveRecord::Base
 	      @modules[i] = nil
 	    end
 	  end
-	  self.replace_ri_modules_with_xsl_modules(@modules.compact!)
+	  self.replace_ri_modules_with_xsl_modules(@modules)
 	end
 
 	def replace_ri_modules_with_xsl_modules modules
