@@ -63,7 +63,7 @@ class CampaignsController < ApplicationController
     @campaign.emails.each do |email|
       email.destroy
     end
-    @campaign.transactional.xsl_modules.map {|x| x.destroy } if !@campaign.transactional.xsl_modules.empty?
+    @campaign.transactional.xsl_modules.map {|x| x.destroy } if @campaign.transactional && !@campaign.transactional.xsl_modules.empty?
     @campaign.transactional.destroy
     @campaign.destroy
 
