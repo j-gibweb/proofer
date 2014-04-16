@@ -17,3 +17,5 @@
 
 /public/assets/emails/
 /public/assets/transactionals/
+
+.DS_Store
