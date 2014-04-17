@@ -1,6 +1,5 @@
 require 'spec_helper'
 include S3
-include Paperclip
 
 describe Promotional do
 
@@ -16,9 +15,8 @@ describe Promotional do
 
 
   it "unzips an html email" do
-  	@promotional = Promotional.create(:folder => "#{Rails.root}/test_upload_files/perfect_case.zip")
-
-  	# puts @promotional.folder
+  	@promotional = Promotional.create(:folder => File.new("#{Rails.root}/test_upload_files/perfect_case.zip"))
+    
   end
 
 
