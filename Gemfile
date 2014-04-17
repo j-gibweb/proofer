@@ -31,6 +31,7 @@ gem 'aws-sdk'
 gem "pony", "~> 1.5.1"
 
 group :development, :test do
+  gem 'thin'
   gem 'sqlite3'
   gem 'guard-rspec', require: false
   gem 'rspec-rails', '2.14.1'

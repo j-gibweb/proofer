@@ -1,12 +1,12 @@
 class CampaignsController < ApplicationController
   def index
     if current_user
-      @campaigns = current_user.campaigns.sort_by {|x| x[:updated_at]}.reverse 
+      @campaigns = current_user.campaigns.most_recent
     else
       @campaigns = []
     end
     respond_to do |format|
-      format.html # index.html.erb
+      format.html 
       format.json { render json: @campaigns }
     end
   end
@@ -63,8 +63,10 @@ class CampaignsController < ApplicationController
     @campaign.emails.each do |email|
       email.destroy
     end
-    @campaign.transactional.xsl_modules.map {|x| x.destroy } if @campaign.transactional && !@campaign.transactional.xsl_modules.empty?
-    @campaign.transactional.destroy
+    if @campaign.transactional
+      @campaign.transactional.xsl_modules.each {|x| x.destroy } 
+      @campaign.transactional.destroy 
+    end
     @campaign.destroy
 
     respond_to do |format|
