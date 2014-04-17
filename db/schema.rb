@@ -54,8 +54,12 @@ ActiveRecord::Schema.define(:version => 20140406202417) do
   create_table "promotionals", :force => true do |t|
     t.text     "html"
     t.integer  "campaign_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "folder_file_name"
+    t.string   "folder_content_type"
+    t.integer  "folder_file_size"
+    t.datetime "folder_updated_at"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   create_table "recipient_lists", :force => true do |t|

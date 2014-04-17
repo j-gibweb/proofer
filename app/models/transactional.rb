@@ -16,11 +16,11 @@ class Transactional < ActiveRecord::Base
 	      @modules[i] = nil
 	    end
 	  end
-	  self.replace_ri_modules_with_xsl_modules(@modules.compact!)
+	  self.replace_ri_modules_with_xsl_modules(@modules.compact!) unless @modules.empty?
 	end
 
 	def replace_ri_modules_with_xsl_modules modules
-	  modules.each_with_index do |mod , i|
+	  modules.each_with_index do |mod , i| 
 	    i+=1 # because computers index from zero, and my co-workers dont.
 	    self.shell.sub!(mod , i.to_s) if mod
 	  end

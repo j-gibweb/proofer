@@ -3,7 +3,7 @@ class CreatePromotionals < ActiveRecord::Migration
     create_table :promotionals do |t|
       t.text :html
       t.references :campaign
-      
+      t.attachment :folder
       t.timestamps
     end
   end
