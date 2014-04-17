@@ -5,8 +5,8 @@ class Campaign < ActiveRecord::Base
   has_one :transactional
   has_one :promotional
 
-	def self.most_recent
-		order("updated_at desc")
-	end
+  def self.most_recent
+    order("updated_at desc")
+  end
 	
 end
