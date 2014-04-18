@@ -14,12 +14,11 @@ module S3
         end
       end
       FileUtils.rm(zip) if remove_after
-      # puts Dir[File.dirname(zip)+"/**/*"]
     end
 
     def self.push_assets_to_s3 object , bucket 
       threads = []
-      S3::Helper.inner_file_paths(object).each do |f|
+      S3::Helper.inner_file_paths(object.folder.path).each do |f|
         next if File.directory?(f) 
         threads << Thread.new{
           file_name = f.sub( File.dirname(f) , "" )
@@ -29,7 +28,7 @@ module S3
             key = "#{S3::Helper.unique_file_name(object)}#{file_name}"
           end
           file = FOG_STORAGE.directories.get(bucket).files.create( 
-            :key => key , 
+            :key => key, 
             :body => File.open(f), 
             :public => true 
             ) 
@@ -43,7 +42,17 @@ module S3
     end
 
     def self.inner_file_paths object
-      Dir["#{File.dirname(object.folder.path)}/**/*"] 
+      Dir["#{File.dirname(object)}/**/*"] 
+    end
+
+    def self.delete_bucket object , bucket
+      threads = []
+      FOG_STORAGE.directories.get(bucket).files.each do |f| 
+        threads << Thread.new{ 
+          f.destroy if f.key.include? S3::Helper.unique_file_name(object) 
+        } 
+      end
+      threads.each(&:join)
     end
 
   end

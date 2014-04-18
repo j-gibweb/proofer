@@ -1,5 +1,5 @@
 class Promotional < ActiveRecord::Base
-  attr_accessible :html , :folder
+  attr_accessible :html , :folder 
   has_one :upload
 
     has_attached_file :folder ,
