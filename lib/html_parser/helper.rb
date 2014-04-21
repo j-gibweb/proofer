@@ -16,12 +16,19 @@ module HtmlParser
       self.replace_commented_conditionals
     end
 
+    def parse!
+      self.highlight_invalid_chars
+      # ...
+      extract_commented_mso_conditionals!(html)
+      #
+    end
+
     def highlight_invalid_chars
       invalid_tag = '<span style="font-size:20px;color:#ca3536;"> INVALID CHARACTER </span>'
       self.html.encode!('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: invalid_tag )
     end
 
-    def extract_commented_mso_conditionals
+    def self.extract_commented_mso_conditionals(html)
       mso_conditionals = []
       index = 0 
       while self.html.match(/<!--(.*?)-->/m).to_s != "" do 
@@ -34,6 +41,7 @@ module HtmlParser
 
     def change_html_image_paths_to_s3_bucket_paths
       page = Nokogiri::HTML(self.html)
+
       tags = {'img' => 'src' , 'td' => 'background', 'table' => 'background'}
       images_missing_from_html = []
       page.search(tags.keys.join(",")).each do |node|
@@ -48,7 +56,9 @@ module HtmlParser
           end
         end
       end 
+
       self.html = page.to_html
+      
       return images_missing_from_html.uniq
     end
 
