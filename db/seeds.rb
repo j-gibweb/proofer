@@ -14,8 +14,20 @@ end
 
 if RecipientList.all.empty?
 	puts "Creating two RecipientLists"
-	RecipientList.create!(:name => "Testing", :all_users => true, :list => "shhtmltest@hotmail.com, shhtmltest@gmail.com, shhtmltest@yahoo.com, shhtmltest@aol.com" )
-	RecipientList.create!(:name => "QA", :all_users => true, :list => "responsysqa.west@gmail.com,responsysqa.west@hotmail.com,responsysqa.west@yahoo.com,responsysqa.west@aol.com,campaign_services_seattle_qatest@responsys.com,responsysf@cp.monitor1.returnpath.net,responsys43.24de42f.new@emailtests.com")
+	RecipientList.create!(
+		:name => "Test List", 
+		:all_users => true, 
+		:list => "shhtmltest@hotmail.com, shhtmltest@gmail.com, shhtmltest@yahoo.com, shhtmltest@aol.com",
+		:office => "Seattle",
+		:purpose => "Testing"
+		)
+	RecipientList.create!(
+		:name => "QA", 
+		:all_users => true, 
+		:list => "responsysqa.west@gmail.com,responsysqa.west@hotmail.com,responsysqa.west@yahoo.com,responsysqa.west@aol.com,campaign_services_seattle_qatest@responsys.com,responsysf@cp.monitor1.returnpath.net,responsys43.24de42f.new@emailtests.com",
+		:office => "Seattle",
+		:purpose => "QA"
+		)
 end
 
 if Campaign.all.empty?
@@ -27,13 +39,13 @@ if Campaign.all.empty?
 	User.first.campaigns << tmp
 end
 
-unless User.find_by_email("sample@sample.com").campaigns.first.transactional
-	puts "Creating Transactional and adding it to User.campaigns.transactional"
-	tmp = Transactional.create(
-		:shell => File.read(Rails.root+"test_upload_files/transactionals/full_campaign/Transactional_FLS_ShipConfirm_Shell.htm"),
-		:xml => File.read(Rails.root+"test_upload_files/transactionals/single_module/ProductRecommendationDetailsOut.xml"),
-		# :folder => Rails.root+"/test_upload_files/transactionals/full_campaign/images.zip"
-		)
-	User.first.campaigns.first.transactional = tmp
-end
+# unless User.find_by_email("sample@sample.com").campaigns.first.transactional
+# 	puts "Creating Transactional and adding it to User.campaigns.transactional"
+# 	tmp = Transactional.create(
+# 		:shell => File.read(Rails.root+"test_upload_files/transactionals/full_campaign/Transactional_FLS_ShipConfirm_Shell.htm"),
+# 		:xml => File.read(Rails.root+"test_upload_files/transactionals/single_module/ProductRecommendationDetailsOut.xml"),
+# 		# :folder => Rails.root+"/test_upload_files/transactionals/full_campaign/images.zip"
+# 		)
+# 	User.first.campaigns.first.transactional = tmp
+# end
 

@@ -53,18 +53,23 @@ ActiveRecord::Schema.define(:version => 20140406202417) do
 
   create_table "promotionals", :force => true do |t|
     t.text     "html"
+    t.integer  "test_email_count",    :default => 0
+    t.integer  "qa_email_count",      :default => 0
+    t.text     "missing_images"
     t.integer  "campaign_id"
     t.string   "folder_file_name"
     t.string   "folder_content_type"
     t.integer  "folder_file_size"
     t.datetime "folder_updated_at"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
   end
 
   create_table "recipient_lists", :force => true do |t|
     t.string   "name"
     t.text     "list"
+    t.string   "office"
+    t.string   "purpose"
     t.boolean  "all_users",  :default => false
     t.boolean  "preferred",  :default => false
     t.datetime "created_at",                    :null => false
@@ -90,19 +95,6 @@ ActiveRecord::Schema.define(:version => 20140406202417) do
     t.integer  "campaign_id"
   end
 
-  create_table "uploads", :force => true do |t|
-    t.string   "folder_file_name"
-    t.string   "folder_content_type"
-    t.integer  "folder_file_size"
-    t.datetime "folder_updated_at"
-    t.integer  "transactional_id"
-    t.integer  "xml_module_id"
-    t.integer  "promotional_id"
-    t.integer  "email_id"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
-  end
-
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",    :null => false
     t.string   "encrypted_password",     :default => "",    :null => false
@@ -115,6 +107,7 @@ ActiveRecord::Schema.define(:version => 20140406202417) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.boolean  "is_admin",               :default => false
+    t.string   "office"
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
     t.string   "name",                   :default => "",    :null => false

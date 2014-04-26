@@ -13,7 +13,7 @@ describe Promotional do
     S3::Helper.delete_bucket(@promotional, "proofer-stage")
   end
 
-  it "converts image file paths in HTML to the paths of the s3 bucket using HtmlParser::Helper inside the Promotional.update_markup! method" do
+  it "converts image file paths in HTML to the paths of the s3 bucket using HtmlParser::Helper inside the Promotional.update_markup! method", :focus do
     @promotional = Promotional.create!(:folder => File.new("#{Rails.root}/test_upload_files/missing_image.zip"))
     S3::Helper.unzip(@promotional.folder.path, File.dirname(@promotional.folder.path), true)
     expect(@promotional.read_local_html).to eq(true)
@@ -31,7 +31,7 @@ describe Promotional do
     SES::EmailHandler.send_email(:recipients => recipients, :user => @user, :subject => "Hey it's a test", :html => @promotional.html)
   end
 
-  describe "#update_markup!", :focus do
+  describe "#update_markup!" do
     let(:html_helper) do
       double(:html_helper, :html => "<body>who cares</body>")
     end

@@ -1,15 +1,19 @@
 Proofer::Application.routes.draw do
-  resources :promotionals
-
-
-  resources :xsl_modules
+  
+  resources :promotionals do
+    member do
+      get 'send_test_email'
+    end
+  end
 
   resources :transactionals do
     member do
       get 'send_test_email'
     end
   end
-  
+
+  resources :xsl_modules
+    
   resources :xsl_modules do
     member do
       get 'download_module'

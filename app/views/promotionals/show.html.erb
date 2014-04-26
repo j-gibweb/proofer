@@ -1,10 +1,58 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <b>Html:</b>
+
+<div style="float:left;">
+  <p id="notice"><%= notice %></p>
+
+  <%unless @promotional.missing_images.empty? %>
+    <h3>Missing Images: </h3>
+    <% @promotional.missing_images.each do |img| %> 
+    <%= img %> <br />
+    <%end%>
+    <h2><strong>You can still send this email even though it is missing images, I just thought you'd like to know. </strong></h2>
+    <br /><br />
+  <%end%>
+
+  <%= link_to @hosted_html_path, 
+              @hosted_html_path,
+              class: "button success" , 
+              :target => "_blank" %> 
+
+  <br /><br /><br />
+  
+  <%if @parent_campaign %>
+    <%= link_to "Back to Parent Campaign: #{@parent_campaign.name}" , @parent_campaign , class: "button success" %>
+  <%end%>      
+  <br /><br /><br />
+  <%= link_to 'Edit / Update Html', edit_promotional_path(@promotional), class: "button success" %> 
+
+
+  <br /><br /><br /><br /><br />
+
+  <%= form_tag({:controller => :promotionals, :action => :send_test_email}, {:method => "get"} )%>
+  
+ 
+  <%= select_tag( :recipient_list, options_for_select( @recipients.map {|l| [l.name, l.id]}, @recipients.first.id ), :size => @recipients.count )%> 
+  
+  <br /><br />
+  <div style="width:500px;" id="selected-recipients"></div>
+
+  <br />
+
+  <%= submit_tag "Send Email", class: "button success" %>
+
+  <br /><br /><br />
+
+  test_email_count: <%= @promotional.test_email_count %> 
+  <br />
+
+  qa_email_count: <%= @promotional.qa_email_count %> 
+  <br />
+</div>
+
+<div style="margin:0 auto;">
   <%= raw @promotional.html %>
-</p>
+</div>
 
 
-<%= link_to 'Edit', edit_promotional_path(@promotional) %> |
-<%= link_to 'Back', promotionals_path %>
+  
+

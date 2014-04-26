@@ -13,45 +13,18 @@
   <%= @campaign.name %>
 </p>
 
-<p>
-  <b>Completion Status:</b>
-  <%= @campaign.status %>
-</p>
-
-<p>
-  <b>Email Tests Sent:</b>  
-   -> <%= @campaign.emails.where("status = ?" , "Testing").count %>
-  <br />
-</p>
-
-<p>
-  <b>QA Tests Sent:</b>  
-   -> <%= @campaign.emails.where("status = ?" , "QA").count %>
-  <br /><br />
-</p>
-
-
-  <%= link_to "New Test Email" , new_email_path(:campaign => @campaign , :status => "Testing") , class: "button success" %> 
-
-
-  <%= link_to "New QA Email" , new_email_path(:campaign => @campaign , :status => "QA") , class: "button success" %> 
-
-
-  <%unless @campaign.emails.empty?%>
-    <%= link_to "View Most Recent Test" , @campaign.emails.last , class: "button success" %>
-  <%end%>
-
-  <%= link_to 'Back', campaigns_path , class: "button alert" %>
-
-  <br><br><br>
-<% if @campaign.transactional %>
-  <%= link_to "Current Transactional Campaign" , transactional_path(@campaign.transactional) , class: "button success"  %>
-<% else %>
-  <%= link_to "New Transactional Test Campaign" , new_transactional_path(:campaign => @campaign) , class: "button success"  %>
-<%end%>
-
 <% if @campaign.promotional %>
   <%= link_to "Current Promotional Campaign" , promotional_path(@campaign.promotional) , class: "button success"  %>
 <% else %>
   <%= link_to "New Promotional Campaign" , new_promotional_path(:campaign => @campaign) , class: "button success"  %>
 <%end%>
+
+<br /><br /><br />
+<% if @campaign.transactional %>
+  <%= link_to "Current Transactional Campaign" , transactional_path(@campaign.transactional) , class: "button success"  %>
+<% else %>
+  <%= link_to "New Transactional Test Campaign" , new_transactional_path(:campaign => @campaign) , class: "button success"  %>
+<%end%>
+<br /><br /><br />
+
+<%= link_to 'Back', campaigns_path , class: "button alert" %> <%= link_to 'Edit Campaign', edit_campaign_path(@campaign) , class: "button alert" %>

@@ -7,20 +7,17 @@ module HtmlParser
       self.html = options[:html]
       self.path = options[:path]
       self.bucket_name = options[:bucket_name]
-      self.images_dir_name = get_images_dir_name(Nokogiri::HTML(self.html))
-
-      self.highlight_invalid_chars
-      self.extract_commented_mso_conditionals
-      @images_missing_from_html = self.change_html_image_paths_to_s3_bucket_paths
-      @images_missing_from_css = self.change_css_image_paths_to_s3_bucket_path
-      self.replace_commented_conditionals
+      self.images_dir_name = get_images_dir_name(Nokogiri::HTML(self.html)) 
     end
 
     def parse!
       self.highlight_invalid_chars
-      # ...
-      extract_commented_mso_conditionals!(html)
-      #
+      self.extract_commented_mso_conditionals
+      images_missing_from_html = self.change_html_image_paths_to_s3_bucket_paths
+      images_missing_from_css = self.change_css_image_paths_to_s3_bucket_path
+      self.replace_commented_conditionals
+
+      return images_missing_from_html + images_missing_from_css
     end
 
     def highlight_invalid_chars
@@ -28,7 +25,7 @@ module HtmlParser
       self.html.encode!('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: invalid_tag )
     end
 
-    def self.extract_commented_mso_conditionals(html)
+    def extract_commented_mso_conditionals
       mso_conditionals = []
       index = 0 
       while self.html.match(/<!--(.*?)-->/m).to_s != "" do 
@@ -41,7 +38,6 @@ module HtmlParser
 
     def change_html_image_paths_to_s3_bucket_paths
       page = Nokogiri::HTML(self.html)
-
       tags = {'img' => 'src' , 'td' => 'background', 'table' => 'background'}
       images_missing_from_html = []
       page.search(tags.keys.join(",")).each do |node|
@@ -56,9 +52,7 @@ module HtmlParser
           end
         end
       end 
-
       self.html = page.to_html
-      
       return images_missing_from_html.uniq
     end
 
@@ -110,8 +104,8 @@ module HtmlParser
       html.search('img').first.first[1].split("/").first if html
     end
 
-    def self.html_file_path object
-      Dir["#{File.dirname(object)}/**/*.htm*"][0]
+    def self.html_file_path file_path
+      Dir["#{File.dirname(file_path)}/**/*.htm*"][0]
     end
 
   end
