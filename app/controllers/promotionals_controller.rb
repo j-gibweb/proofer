@@ -12,8 +12,14 @@ class PromotionalsController < ApplicationController
   def show
     @promotional = Promotional.find(params[:id])
     @parent_campaign = Campaign.find(@promotional.campaign_id)
-    @recipients = RecipientList.get_recipient_emails_by_user(current_user)
+    @recipients = RecipientList.get_recipient_lists_by_user(current_user)
     @hosted_html_path = "https://s3.amazonaws.com/proofer-stage/#{S3::Helper.unique_file_name(@promotional)}/#{File.basename(HtmlParser::Helper.html_file_path(@promotional.folder.path))}"
+    
+    if @recipients.find {|l| l.preferred? }
+      @default_mailing_list = @recipients.find {|l| l.preferred? }.id
+    else
+      @default_mailing_list = @recipients.select {|l| l.all_users && l.purpose == "Testing"}.first.id
+    end
 
     respond_to do |format|
       format.html 
@@ -74,8 +80,7 @@ class PromotionalsController < ApplicationController
     S3::Helper.unzip(@promotional.folder.path, File.dirname(@promotional.folder.path), true)
     S3::Helper.push_assets_to_s3(@promotional, "proofer-stage")
     @promotional.read_local_html
-    @all_missing_images = @promotional.update_markup!
-    return @all_missing_images 
+    @promotional.update_markup!
   end
   
   def send_test_email

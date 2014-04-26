@@ -6,18 +6,28 @@
 </p>
 
 <p>
-  <b>List:</b>
-  <%= @recipient_list.list %>
+  <b>List:</b><br />
+  <%= raw @recipient_list.list.gsub(/,/, "<br />") %>
 </p>
 
 <p>
-  <b>Preferred:</b>
+  <b>User Preferred?:</b>
   <%= @recipient_list.preferred %>
 </p>
 
 <p>
-  <b>Preferred:</b>
-  <%= @recipient_list.preferred %>
+  <b>All Users?:</b>
+  <%= @recipient_list.all_users %>
+</p>
+
+<p>
+  <b>Office:</b>
+  <%= @recipient_list.office %>
+</p>
+
+<p>
+  <b>Purpose:</b>
+  <%= @recipient_list.purpose %>
 </p>
 
 

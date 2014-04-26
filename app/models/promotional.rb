@@ -18,7 +18,6 @@ class Promotional < ActiveRecord::Base
     self.missing_images = helper.parse!
     self.html = helper.html
     self.save!
-    return @all_missing_images 
   end
 
   def read_local_html

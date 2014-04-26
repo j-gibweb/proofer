@@ -1,9 +1,8 @@
 class RecipientListsController < ApplicationController
   
   def index
-    current_user_lists = current_user.recipient_lists
-    all_users_lists = RecipientList.where("all_users = ?" , true)
-    @recipient_lists  = current_user_lists | all_users_lists
+    @recipient_lists = RecipientList.get_recipient_lists_by_user(current_user)
+    
     respond_to do |format|
       format.html 
       format.json { render json: @recipient_lists }

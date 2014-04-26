@@ -6,6 +6,7 @@ unless User.find_by_email("sample@sample.com")
 	User.create(
 	:email => "sample@sample.com",
 	:name => "App_Tester",
+	:office => "Seattle",
 	:password => "html1234",
 	:confirmed_user => true,
 	:is_admin => true
@@ -13,21 +14,37 @@ unless User.find_by_email("sample@sample.com")
 end
 
 if RecipientList.all.empty?
-	puts "Creating two RecipientLists"
+	puts "Creating RecipientLists"
 	RecipientList.create!(
 		:name => "Test List", 
 		:all_users => true, 
 		:list => "shhtmltest@hotmail.com, shhtmltest@gmail.com, shhtmltest@yahoo.com, shhtmltest@aol.com",
 		:office => "Seattle",
+		:purpose => "Testing",
+		:preferred => true
+		)
+	james_list = RecipientList.create!(
+		:name => "James's Personal List", 
+		:all_users => false, 
+		:list => "jweber000@gmail.com",
+		:office => "Seattle",
 		:purpose => "Testing"
 		)
 	RecipientList.create!(
-		:name => "QA", 
+		:name => "QA Seattle", 
 		:all_users => true, 
 		:list => "responsysqa.west@gmail.com,responsysqa.west@hotmail.com,responsysqa.west@yahoo.com,responsysqa.west@aol.com,campaign_services_seattle_qatest@responsys.com,responsysf@cp.monitor1.returnpath.net,responsys43.24de42f.new@emailtests.com",
 		:office => "Seattle",
 		:purpose => "QA"
 		)
+	RecipientList.create!(
+		:name => "QA New York", 
+		:all_users => true, 
+		:list => "bunch, of, bull, shit",
+		:office => "New York",
+		:purpose => "QA"
+		)
+	User.first.recipient_lists << james_list
 end
 
 if Campaign.all.empty?

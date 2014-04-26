@@ -11,9 +11,9 @@ class RecipientList < ActiveRecord::Base
     ["Testing", "QA"]
   end
 
-  def self.get_recipient_emails_by_user(user)
+  def self.get_recipient_lists_by_user(user)
     current_user_lists = user.recipient_lists
-    all_users_lists = RecipientList.where("all_users = ?" , true)
+    all_users_lists = RecipientList.where( :all_users => true, :office => user.office )
     current_user_lists | all_users_lists 
   end
 
