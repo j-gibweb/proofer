@@ -21,35 +21,12 @@ ActiveRecord::Schema.define(:version => 20140406202417) do
     t.datetime "updated_at",                         :null => false
   end
 
-  create_table "campaigns_emails", :id => false, :force => true do |t|
-    t.integer "campaign_id"
-    t.integer "email_id"
-  end
-
-  add_index "campaigns_emails", ["campaign_id", "email_id"], :name => "index_campaigns_emails_on_campaign_id_and_email_id"
-
   create_table "campaigns_users", :id => false, :force => true do |t|
     t.integer "campaign_id"
     t.integer "user_id"
   end
 
   add_index "campaigns_users", ["campaign_id", "user_id"], :name => "index_campaigns_users_on_campaign_id_and_user_id"
-
-  create_table "emails", :force => true do |t|
-    t.string   "subject"
-    t.text     "recipients"
-    t.text     "markup"
-    t.string   "campaign_name"
-    t.string   "status",                :default => "Testing"
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
-    t.string   "folder_file_name"
-    t.string   "folder_content_type"
-    t.integer  "folder_file_size"
-    t.datetime "folder_updated_at"
-    t.text     "additional_recipients", :default => ""
-    t.string   "html_file_name",        :default => ""
-  end
 
   create_table "promotionals", :force => true do |t|
     t.text     "html"

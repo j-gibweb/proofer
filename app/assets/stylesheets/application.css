@@ -127,11 +127,11 @@ border: solid 1px #C66;
 	font-size:13px;
 	text-decoration: none;
 	border: 1px #333333 solid;
-	-o-transition:.5s;
-	-ms-transition:.5s;
-	-moz-transition:.5s;
-	-webkit-transition:.5s;
-	transition:.5s;
+	-o-transition:.2s;
+	-ms-transition:.2s;
+	-moz-transition:.2s;
+	-webkit-transition:.2s;
+	transition:.2s;
 
 	-webkit-border-radius:4px;
 	-moz-border-radius:4px;
@@ -148,11 +148,11 @@ border: solid 1px #C66;
 
 .success:hover{
 	background: #339966;
-	-o-transition:.5s;
-	-ms-transition:.5s;
-	-moz-transition:.5s;
-	-webkit-transition:.5s;
-	transition:.5s;
+	-o-transition:.2s;
+	-ms-transition:.2s;
+	-moz-transition:.2s;
+	-webkit-transition:.2s;
+	transition:.2s;
 }
 
 .alert:hover{
