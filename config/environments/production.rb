@@ -19,7 +19,7 @@ Proofer::Application.configure do
 
   # Generate digests for assets URLs
   config.assets.digest = true
-  config.assets.initialize_on_precompile = false
+  # config.assets.initialize_on_precompile = false
 
 
   # Defaults to nil and saved in location specified by config.assets.prefix
