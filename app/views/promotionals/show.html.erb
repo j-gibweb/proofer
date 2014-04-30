@@ -1,10 +1,75 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <b>Html:</b>
+
+<div style="float:left;">
+  <p id="notice"><%= notice %></p>
+
+  <%unless @promotional.missing_images.empty? %>
+    <div id="missing_images">
+      <ul>
+        <li>
+          <h2>Images Missing from /images directory: </h2>  
+        </li>
+        <li>
+          <em>(names within parenthesis were found as .css background-images )</em>   
+        </li>
+        <% @promotional.missing_images.each do |img| %> 
+        <li>
+          <%= img %>
+        </li>
+        <%end%>  
+        <li>
+          <h2><strong>You can still send this email even though it's missing images, I just thought you'd like to know. </strong></h2>
+        </li>
+      </ul>
+    </div>
+  <%end%>
+
+  <%= link_to @hosted_html_path, @hosted_html_path, class: "button success", :target => "_blank" %> 
+
+  <br /><br /><br />
+  
+  <%if @parent_campaign %>
+    <%= link_to "Back to Parent Campaign: #{@parent_campaign.name}" , @parent_campaign , class: "button success" %>
+  <%end%>
+
+  <br /><br /><br />
+
+  <%= link_to 'Edit / Update Html', edit_promotional_path(@promotional), class: "button success" %> 
+
+  <br /><br /><br />
+
+  <%= form_tag({:controller => :promotionals, :action => :send_test_email}, {:method => "get"} )%>
+  
+  <h3>Recipient List: </h3>
+
+  <div class="style_select">
+    <%= select_tag( :recipient_list, options_for_select( @recipients.map {|l| [l.name, l.id]}, @default_mailing_list ), :size => @recipients.count )%> 
+  </div>
+
+  <br /><br />
+
+  <div style="width:500px;" id="selected-recipients"></div>
+
+  <br />
+
+  <%= submit_tag "Send Email", class: "button success" %>
+
+  <br /><br /><br />
+
+  test_email_count: <%= @promotional.test_email_count %> 
+  
+  <br />
+
+  qa_email_count: <%= @promotional.qa_email_count %> 
+  
+  <br />
+
+</div>
+
+<div style="margin:0 auto;">
   <%= raw @promotional.html %>
-</p>
+</div>
 
 
-<%= link_to 'Edit', edit_promotional_path(@promotional) %> |
-<%= link_to 'Back', promotionals_path %>
+  
+

@@ -15,9 +15,20 @@
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
+  <br />
   <div class="field">
     <%= f.label :list %><br />
     <%= f.text_area :list %>
+  </div>
+  <br />
+  <div class="field">
+    <%= f.label :purpose %><br />
+    <%= f.select :purpose, RecipientList.purposes.map { |o| o } %>
+  </div>
+  <br />
+  <div class="field">
+    <%= f.label :office %><br />
+    <%= f.select :office, RecipientList.offices.map { |o| o } %>
   </div>
   
   <%unless @recipient_list.all_users%>
@@ -26,15 +37,15 @@
       <%= f.check_box :preferred %>
     </div>
   <%end%>
-
+  <br />
   <% if current_user.is_admin %>
     <div class="field">
       <%= f.label :all_users %> <i>(Make list available to all users)</i><br />
       <%= f.check_box :all_users %>
     </div>
   <%end%>
-
+  <br /><br />
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Update List" , class: "button success" %>
   </div>
 <% end %>

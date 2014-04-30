@@ -11,17 +11,33 @@
     </div>
   <% end %>
 
-  <div class="field hidden">
+  <%= hidden_field_tag :campaign, params[:campaign] %>
+
+  <%= link_to_function "Edit Html", "changeVisibility(html);", class: "button alert" %>
+  
+  <div class="field hidden" id="html">
+    <br /><br /><br />
     <strong><%= f.label :html %></strong> - optional<br />
     <%= f.text_area :html %>
   </div>
-  <br>
+  <br /><br /><br />
    <div class="field">
-    <strong>.zip containing promotional email .html and all assets</strong><br />
-    <%= f.file_field :folder %>
+    <strong>Use .zip containing promotional email .html and all assets</strong><br />
+    <%= f.file_field :folder , class: "button success"  %>
   </div>
-  <br><br>
+  <br /><br /><br /><br />
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Submit", class: "button success" %>
   </div>
 <% end %>
+
+
+<script>
+  function changeVisibility(field_name){
+    if ($(field_name).is(":visible")) {$(field_name).hide();}
+    else {$(field_name).show();}
+  };
+</script>
+<style>
+  #promotional_html {width: 80%; height:600px;}
+</style>

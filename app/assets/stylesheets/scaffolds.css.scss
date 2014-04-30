@@ -66,8 +66,36 @@ pre {
     color: #fff;
   }
   ul li {
-    font-size: 12px;
+    margin:10px 0px 10px 0px;
+    font-size: 14px;
     list-style: square;
+  }
+}
+
+#missing_images {
+  // width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 5px;
+    font-size: 12px;
+    margin: -7px;
+    margin-bottom: 0px;
+    background-color: #c00;
+    color: #fff;
+  }
+  ul {
+    padding-left:5px;
+  }
+  ul li {
+    list-style-type: none;
+    padding: 5px 5px 5px 5px;
+    font-size: 12px;
   }
 }
 

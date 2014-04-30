@@ -21,13 +21,6 @@ ActiveRecord::Schema.define(:version => 20140406202417) do
     t.datetime "updated_at",                         :null => false
   end
 
-  create_table "campaigns_emails", :id => false, :force => true do |t|
-    t.integer "campaign_id"
-    t.integer "email_id"
-  end
-
-  add_index "campaigns_emails", ["campaign_id", "email_id"], :name => "index_campaigns_emails_on_campaign_id_and_email_id"
-
   create_table "campaigns_users", :id => false, :force => true do |t|
     t.integer "campaign_id"
     t.integer "user_id"
@@ -35,36 +28,25 @@ ActiveRecord::Schema.define(:version => 20140406202417) do
 
   add_index "campaigns_users", ["campaign_id", "user_id"], :name => "index_campaigns_users_on_campaign_id_and_user_id"
 
-  create_table "emails", :force => true do |t|
-    t.string   "subject"
-    t.text     "recipients"
-    t.text     "markup"
-    t.string   "campaign_name"
-    t.string   "status",                :default => "Testing"
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
-    t.string   "folder_file_name"
-    t.string   "folder_content_type"
-    t.integer  "folder_file_size"
-    t.datetime "folder_updated_at"
-    t.text     "additional_recipients", :default => ""
-    t.string   "html_file_name",        :default => ""
-  end
-
   create_table "promotionals", :force => true do |t|
     t.text     "html"
+    t.integer  "test_email_count",    :default => 0
+    t.integer  "qa_email_count",      :default => 0
+    t.text     "missing_images"
     t.integer  "campaign_id"
     t.string   "folder_file_name"
     t.string   "folder_content_type"
     t.integer  "folder_file_size"
     t.datetime "folder_updated_at"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
   end
 
   create_table "recipient_lists", :force => true do |t|
     t.string   "name"
     t.text     "list"
+    t.string   "office"
+    t.string   "purpose"
     t.boolean  "all_users",  :default => false
     t.boolean  "preferred",  :default => false
     t.datetime "created_at",                    :null => false
@@ -90,19 +72,6 @@ ActiveRecord::Schema.define(:version => 20140406202417) do
     t.integer  "campaign_id"
   end
 
-  create_table "uploads", :force => true do |t|
-    t.string   "folder_file_name"
-    t.string   "folder_content_type"
-    t.integer  "folder_file_size"
-    t.datetime "folder_updated_at"
-    t.integer  "transactional_id"
-    t.integer  "xml_module_id"
-    t.integer  "promotional_id"
-    t.integer  "email_id"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
-  end
-
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",    :null => false
     t.string   "encrypted_password",     :default => "",    :null => false
@@ -115,6 +84,7 @@ ActiveRecord::Schema.define(:version => 20140406202417) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.boolean  "is_admin",               :default => false
+    t.string   "office"
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
     t.string   "name",                   :default => "",    :null => false

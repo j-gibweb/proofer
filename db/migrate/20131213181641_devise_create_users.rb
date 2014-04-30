@@ -21,6 +21,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       # admin user?
       t.boolean :is_admin , :default => false
+      t.string :office
 
       ## Confirmable
       # t.string   :confirmation_token

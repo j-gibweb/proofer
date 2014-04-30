@@ -60,13 +60,8 @@ class CampaignsController < ApplicationController
 
   def destroy
     @campaign = Campaign.find(params[:id])
-    @campaign.emails.each do |email|
-      email.destroy
-    end
-    if @campaign.transactional
-      @campaign.transactional.xsl_modules.each {|x| x.destroy } 
-      @campaign.transactional.destroy 
-    end
+    
+    @campaign.promotional.destroy if @campaign.promotional
     @campaign.destroy
 
     respond_to do |format|

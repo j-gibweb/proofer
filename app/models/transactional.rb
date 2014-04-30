@@ -2,7 +2,6 @@ class Transactional < ActiveRecord::Base
 
   attr_accessible :shell, :xml , :folder
   has_many :xsl_modules
-  has_one :upload
 
   has_attached_file :folder ,
   :url  => "/assets/:id/:basename.:extension",

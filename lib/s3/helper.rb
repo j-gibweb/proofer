@@ -1,6 +1,7 @@
 module S3
   class Helper
-    
+    require 'zip/zip'
+
     def self.unique_file_name(object)
       "#{object.class}_#{object.created_at}".gsub!(/:/,"").gsub!(/ /,"_").gsub!(/-/,"_").downcase
     end
@@ -17,13 +18,14 @@ module S3
     end
 
     def self.push_assets_to_s3 object , bucket 
+      helper = S3::Helper.new
       threads = []
-      S3::Helper.inner_file_paths(object.folder.path).each do |f|
+      helper.inner_file_paths(object.folder.path).each do |f|
         next if File.directory?(f) 
         threads << Thread.new{
           file_name = f.sub( File.dirname(f) , "" )
           if [".jpg" , ".gif" , ".png"].any? { |ext| file_name.include?(ext) } 
-            key = "#{S3::Helper.unique_file_name(object)}/#{S3::Helper.images_dir_name(f)}#{file_name}"
+            key = "#{S3::Helper.unique_file_name(object)}/#{helper.images_dir_name(f)}#{file_name}"
           elsif file_name.include? ".htm" 
             key = "#{S3::Helper.unique_file_name(object)}#{file_name}"
           end
@@ -37,11 +39,11 @@ module S3
       threads.each(&:join)
     end
 
-    def self.images_dir_name object
+    def images_dir_name object
       "#{File.dirname(object).split("/").last}"
     end
 
-    def self.inner_file_paths object
+    def inner_file_paths object
       Dir["#{File.dirname(object)}/**/*"] 
     end
 
