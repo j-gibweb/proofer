@@ -7,14 +7,20 @@ module HtmlParser
       self.html = options[:html]
       self.path = options[:path]
       self.bucket_name = options[:bucket_name]
-      self.images_dir_name = get_images_dir_name(Nokogiri::HTML(self.html)) 
+      self.images_dir_name = get_images_dir_name(Nokogiri::HTML(self.html))
+      @images_to_upload = uploaded_image_names(self.images_dir_name, self.path)
     end
 
     def parse!
-      self.highlight_invalid_chars
+      
       self.extract_commented_mso_conditionals
-      images_missing_from_html = self.change_html_image_paths_to_s3_bucket_paths
+
       images_missing_from_css = self.change_css_image_paths_to_s3_bucket_path
+
+      self.highlight_invalid_chars
+
+      images_missing_from_html = self.change_html_image_paths_to_s3_bucket_paths
+
       self.replace_commented_conditionals
 
       return images_missing_from_html + images_missing_from_css
@@ -44,7 +50,7 @@ module HtmlParser
         url_param = tags[node.name]
         src = node[url_param]
         unless self.invalid_html_element? src  
-          if uploaded_image_names(self.images_dir_name, self.path).include? src.split("/").last #|| ignore_images == true
+          if @images_to_upload.include? src.split("/").last #|| ignore_images == true
             uri = URI.parse(src)
             node[url_param] = uri.path.sub(self.images_dir_name, path_to_s3_bucket) 
           else 
@@ -64,7 +70,7 @@ module HtmlParser
       parser.each_selector do |selector, declarations, specificity|
         if declarations.include? "background-image"
           unless self.invalid_html_element? declarations
-            if uploaded_image_names(self.images_dir_name, self.path).any? {|img| declarations.include?(img)} #|| ignore_images == true
+            if @images_to_upload.any? {|img| declarations.include?(img)} #|| ignore_images == true
               change = declarations.sub!(self.images_dir_name, path_to_s3_bucket) 
               css_string.sub!(parser.find_by_selector(selector)[0],change) 
             else
@@ -97,7 +103,7 @@ module HtmlParser
     end
 
     def uploaded_image_names images_dir_name, path 
-      Dir["#{File.dirname(path)}/#{images_dir_name}/*"].map {|each| each.split("/").last}  
+      Dir["#{File.dirname(path)}/**/#{images_dir_name}/*"].map {|each| each.split("/").last}
     end
 
     def get_images_dir_name html
