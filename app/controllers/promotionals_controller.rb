@@ -1,4 +1,7 @@
 class PromotionalsController < ApplicationController
+  include HtmlParser
+  include S3
+  include SES
   
   def index
     @promotionals = Promotional.all
