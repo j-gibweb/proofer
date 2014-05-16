@@ -36,7 +36,7 @@ class RecipientListsController < ApplicationController
 
     respond_to do |format|
       if @recipient_list.save
-        if current_user.recipient_lists.map {|list| list.preferred}.include?(true)
+        if @recipient_list.preferred? && current_user.recipient_lists.map {|list| list.preferred}.include?(true)
           @recipient_list.make_so_only_one_list_is_preferred(current_user)
         end
         current_user.recipient_lists << @recipient_list
