@@ -1,5 +1,5 @@
 class PromotionalsController < ApplicationController
-  # require 'SES/email_handler'
+  require 'SES/email_handler'
   
   def index
     @promotionals = Promotional.all
