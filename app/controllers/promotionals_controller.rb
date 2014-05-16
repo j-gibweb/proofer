@@ -1,8 +1,5 @@
 class PromotionalsController < ApplicationController
-  # include HtmlParser
-  # include S3
   # require 'SES/email_handler'
-  # include SES
   
   def index
     @promotionals = Promotional.all
