@@ -16,7 +16,7 @@ class PromotionalsController < ApplicationController
     @promotional = Promotional.find(params[:id])
     @parent_campaign = Campaign.find(@promotional.campaign_id)
     @recipients = RecipientList.get_recipient_lists_by_user(current_user)
-    @hosted_html_path = "https://s3.amazonaws.com/proofer-stage/#{S3::Helper.unique_file_name(@promotional)}/#{File.basename(HtmlParser::Helper.html_file_path(@promotional.folder.path))}" if @promotional.folder.path
+    # @hosted_html_path = "https://s3.amazonaws.com/proofer-stage/#{S3::Helper.unique_file_name(@promotional)}/#{File.basename(HtmlParser::Helper.html_file_path(@promotional.folder.path))}" 
     
     if @recipients.find {|l| l.preferred? }
       @default_mailing_list = @recipients.find {|l| l.preferred? }.id
