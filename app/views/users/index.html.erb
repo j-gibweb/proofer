@@ -10,6 +10,7 @@
   <tr>
     <th>Name</th>
     <th>Email</th>
+    <th>Office</th>
     <th>Admin</th>
     <th>Confirmed?</th>
     <th>Actions</th>
@@ -19,6 +20,7 @@
   <tr>
     <td><%= user.name%></td>
     <td><%= user.email %></td>
+    <td><%= user.office %></td>
     <td style="text-align:center;"><%= user.is_admin %></td>
     <td style="text-align:center;">
       <% if user.confirmed_user == true %>

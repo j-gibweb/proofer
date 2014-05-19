@@ -17,10 +17,12 @@ class PromotionalsController < ApplicationController
     
     # @hosted_html_path = "https://s3.amazonaws.com/proofer-stage/#{S3::Helper.unique_file_name(@promotional)}/#{File.basename(HtmlParser::Helper.html_file_path(@promotional.folder.path))}" 
     
-    if @recipients.find {|l| l.preferred? }
+    if @recipients.find { |l| l.preferred? }
       @default_mailing_list = @recipients.find {|l| l.preferred? }.id
-    else
+    elsif !@recipients.empty?
       @default_mailing_list = @recipients.select {|l| l.all_users && l.purpose == "Testing"}.first.id
+    else
+      @recipients = [RecipientList.new(:name => "You Don't Have Any RecipientLists, better go make one.")]
     end
 
     respond_to do |format|
@@ -87,18 +89,20 @@ class PromotionalsController < ApplicationController
   
   def send_test_email
     promotional = Promotional.find(params[:id])
-    @recipient_list = RecipientList.find(params[:recipient_list])
-    subject = promotional.set_subject_line_and_increment_number_of_sent_emails(@recipient_list)
-    
-    SES::EmailHandler.send_email(
-      :recipients => @recipient_list.list, 
-      :user => current_user, 
-      :subject => subject, 
-      :html => promotional.html
-    )
+    @recipient_list = RecipientList.find(params[:recipient_list]) if !params[:recipient_list].empty?
+    subject = promotional.set_subject_line_and_increment_number_of_sent_emails(@recipient_list) if @recipient_list
     
     respond_to do |format|
-      format.html { redirect_to promotional, notice: "#{@recipient_list.purpose} Email Sent" }      
+      if @recipient_list && SES::EmailHandler.send_email(
+        :recipients => @recipient_list.list, 
+        :user => current_user, 
+        :subject => subject, 
+        :html => promotional.html
+      )
+        format.html { redirect_to promotional, notice: "#{@recipient_list.purpose} Email Sent" }      
+      else
+        format.html { redirect_to promotional, notice: "Test Email Failed to Send." }      
+      end
     end
   end
 
