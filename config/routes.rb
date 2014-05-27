@@ -1,25 +1,12 @@
 Proofer::Application.routes.draw do
+  resources :promotionals
+  # resources :promotionals do
+  #   member do
+  #     get 'send_test_email'
+  #   end
+  # end
   
-  resources :promotionals do
-    member do
-      get 'send_test_email'
-    end
-  end
-
-  resources :transactionals do
-    member do
-      get 'send_test_email'
-    end
-  end
-
-  resources :xsl_modules
-    
-  resources :xsl_modules do
-    member do
-      get 'download_module'
-    end
-  end
-
+  match 'promotionals/:id/send_test_email' => 'promotionals#send_test_email', :as => :send_test_email
 
   resources :recipient_lists
   resources :campaigns
@@ -29,14 +16,7 @@ Proofer::Application.routes.draw do
 
   root to: 'campaigns#index'
 
-  # Is there a way to make this live in Application Controller?
-
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
-
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
+  
 
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase

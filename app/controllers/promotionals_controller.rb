@@ -99,7 +99,7 @@ class PromotionalsController < ApplicationController
         :subject => subject, 
         :html => promotional.html
       )
-        format.html { redirect_to promotional, notice: "#{@recipient_list.purpose} Email Sent" }      
+        format.html { redirect_to promotional, notice: "#{@recipient_list.purpose} #{@recipient_list.list} Email Sent" }      
       else
         format.html { redirect_to promotional, notice: "Test Email Failed to Send." }      
       end
