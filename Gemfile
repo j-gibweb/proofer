@@ -30,6 +30,8 @@ gem 'newrelic_rpm'
 
 gem 'aws-sdk'
 gem "pony", "~> 1.5.1"
+gem "unicorn"
+gem "twilio-ruby"
 
 group :development, :test do
   gem 'sqlite3'
@@ -37,3 +39,8 @@ group :development, :test do
   gem 'rspec-rails', '2.14.1'
   gem 'zeus'
 end
+
+gem 'capistrano', '~> 3.1.0'
+gem 'capistrano-bundler', '~> 1.1.2'
+gem 'capistrano-rails', '~> 1.1.1'
+
