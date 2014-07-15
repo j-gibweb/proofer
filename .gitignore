@@ -23,7 +23,7 @@ vendor/bundle
 
 .DS_Store
 
-
+/config/initializers/secret_stuff.rb
 
 
 
