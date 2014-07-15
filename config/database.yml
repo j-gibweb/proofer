@@ -25,13 +25,13 @@
 #   username: jweber
 #   password:
 
-#   production:
-#     adapter: postgresql
-#     encoding: unicode
-#     database: myapp_production
-#     pool: 20
-#     username: jweber
-#     password:
+  # production:
+  #   adapter: postgresql
+  #   encoding: unicode
+  #   database: myapp_production
+  #   pool: 20
+  #   username: jweber
+  #   password:
 
 
 development:

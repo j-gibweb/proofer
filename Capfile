@@ -1,5 +1,3 @@
-# require 'capistrano/bundler'
-# require 'capistrano/rails'
 
 # If you are using rbenv add these lines:
 # require 'capistrano/rbenv'
@@ -17,6 +15,11 @@ require 'capistrano/setup'
 # Includes default deployment tasks
 require 'capistrano/deploy'
 
+
+require 'capistrano/bundler'
+require 'capistrano/rails'
+
+
 # Includes tasks from other gems included in your Gemfile
 #
 # For documentation on these, see for example:
@@ -27,10 +30,10 @@ require 'capistrano/deploy'
 #   https://github.com/capistrano/bundler
 #   https://github.com/capistrano/rails
 #
-# require 'capistrano/rvm'
+require 'capistrano/rvm'
 # require 'capistrano/rbenv'
 # require 'capistrano/chruby'
-# require 'capistrano/bundler'
+
 # require 'capistrano/rails/assets'
 # require 'capistrano/rails/migrations'
 
