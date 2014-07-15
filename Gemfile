@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.2'
+ruby '2.1.1'
 gem 'rails', '3.2.13'
 
 group :production do
@@ -17,7 +17,7 @@ end
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem "paperclip" , :git => "git://github.com/thoughtbot/paperclip.git"
+gem "paperclip" #, :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'rubyzip',  "~> 0.9.9"
 gem "aws-ses", "~> 0.5.0"
 gem "fog"

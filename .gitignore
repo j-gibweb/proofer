@@ -15,6 +15,7 @@
 /tmp
 .elasticbeanstalk/
 
+/test_upload_files/
 /public/assets/emails/
 /public/assets/transactionals/
 /public/assets/promotionals/
@@ -22,5 +23,8 @@ vendor/bundle
 
 .DS_Store
 
-test_upload_files
+
+
+
+
 

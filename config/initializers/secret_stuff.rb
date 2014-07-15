@@ -1,0 +1,3 @@
+FOG_STORAGE  = Fog::Storage.new({:provider => 'AWS', :aws_access_key_id => "AKIAIIY3JNRNOMPO4ROA", :aws_secret_access_key => "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"})
+AMAZON_SES = AWS::SES::Base.new(:access_key_id => 'AKIAIIY3JNRNOMPO4ROA', :secret_access_key => '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')
+# DEVISE_KEY = '8a405082ef49b9a1566b40b418676bff0af159245bae706551169157e5d5561a2148cbb47884c10091a40ab9ed315609141d84a4fa12c720f5b109e196bab90f'
