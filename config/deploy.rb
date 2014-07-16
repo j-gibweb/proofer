@@ -9,6 +9,9 @@ set :repo_url, 'https://github.com/j-gibweb/proofer-mailer.git'
 
 # Default deploy_to directory is /var/www/my_app
 set :deploy_to, '/home/deploy/proofer-mailer-stage'
+set :rbenv_custom_path, '/home/deploy/.rbenv/'
+set :rbenv_ruby, '2.1.2'
+
 
 # Default value for :scm is :git
 set :scm, :git

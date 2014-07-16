@@ -28,10 +28,11 @@
   # production:
   #   adapter: postgresql
   #   encoding: unicode
-  #   database: myapp_production
+  #   database: proofer-mailer-stage
   #   pool: 20
-  #   username: jweber
-  #   password:
+  #   username: postgres
+  #   password: h4ckytosh
+  #   host: localhost
 
 
 development:
