@@ -12,7 +12,6 @@ set :deploy_to, '/home/deploy/proofer-mailer-stage'
 set :rbenv_custom_path, '/home/deploy/.rbenv/'
 set :rbenv_ruby, '2.1.2'
 
-
 # Default value for :scm is :git
 set :scm, :git
 set :git_http_username, 'j-gibweb'
